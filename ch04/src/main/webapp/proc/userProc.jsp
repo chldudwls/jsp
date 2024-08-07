@@ -1,0 +1,26 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+	<jsp:useBean id="user" class="sub1.UserDTO">
+	<jsp:setProperty name="user" property="uid"/>
+	<jsp:setProperty name="user" property="name"/>
+	<jsp:setProperty name="user" property="hp"/>
+	<jsp:setProperty name="user" property="age"/>
+	</jsp:useBean>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>userProc</title>
+</head>
+<body>
+	<h3>전송 데이터 수신</h3>
+	<p>
+	아이디 : <%= user.getUid() %>
+	이 름 : <%= user.getName() %>
+	휴대폰 : <%= user.getHp() %>
+	나이 : <%= user.getAge() %>
+	</p>
+</body>
+</html>
