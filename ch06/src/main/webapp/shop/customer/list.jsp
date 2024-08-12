@@ -79,7 +79,7 @@
 			<td><%= vo.getAddr() %></td>
 			<td><%= vo.getRdate() %></td>
 			<td>
-				<a href="@">수정</a>
+				<a href="./ch06/update/shop/customerUp.jsp">수정</a>
 				<a href="@">삭제</a>
 			</td>
 			<%} %>
