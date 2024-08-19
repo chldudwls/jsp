@@ -2,7 +2,6 @@ package com.jboard.controller.user;
 
 import java.io.IOException;
 
-import dto.user.TermsDTO;
 import com.jboard.service.user.TermsService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -11,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import user.dto.TermsDTO;
 
 @WebServlet("/user/terms.do")
 public class TermsController extends HttpServlet{

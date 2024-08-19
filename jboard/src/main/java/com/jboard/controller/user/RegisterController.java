@@ -4,13 +4,13 @@ import java.io.IOException;
 
 import com.jboard.service.user.UserService;
 
-import dto.user.UserDTO;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import user.dto.UserDTO;
 
 @WebServlet("/user/register.do")
 public class RegisterController extends HttpServlet{

@@ -1,4 +1,4 @@
-package dto.user;
+package user.dto;
 
 public class TermsDTO {
 	private String terms;

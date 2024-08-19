@@ -1,4 +1,4 @@
-package dto.user;
+package article.dto;
 
 public class ArticleDTO {
 	private int no;

@@ -5,8 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import dao.user.TermsDAO;
-import dto.user.TermsDTO;
+import user.dao.TermsDAO;
+import user.dto.TermsDTO;
 
 public class TermsService {
 	private static TermsService instance = new TermsService();

@@ -2,8 +2,8 @@ package com.jboard.service.user;
 
 import java.util.List;
 
-import dao.user.UserDAO;
-import dto.user.UserDTO;
+import user.dao.UserDAO;
+import user.dto.UserDTO;
 
 public enum UserService {
 	INSTANCE;
