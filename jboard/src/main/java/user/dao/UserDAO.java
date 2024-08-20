@@ -9,6 +9,7 @@ import user.dto.UserDTO;
 import util.DBHelper;
 import util.Sql;
 
+
 public class UserDAO extends DBHelper{
 	private static UserDAO instance = new UserDAO();
 	public static UserDAO getInstance() {
@@ -17,6 +18,41 @@ public class UserDAO extends DBHelper{
 	private UserDAO() {}
 	
 	Logger logger = LoggerFactory.getLogger(getClass());
+	
+	public int selectCountUser(String type, String value) {
+		int result = 0;
+		
+StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_USER);
+		
+		if(type.equals("uid")) {
+			sql.append(Sql.WHERE_UID);
+		}else if(type.equals("nick")) {
+			sql.append(Sql.WHERE_NICK);
+		}else if(type.equals("email")) {
+			sql.append(Sql.WHERE_EMAIL);
+		}else if(type.equals("hp")) {
+			sql.append(Sql.WHERE_HP);
+		}
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, value);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			closeAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
+	
+	
 	public void insertUser(UserDTO dto) {try {
 		conn = getConnection();
 		psmt = conn.prepareStatement(Sql.INSERT_USER);

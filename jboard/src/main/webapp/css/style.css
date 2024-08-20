@@ -9,10 +9,24 @@ ul, ol {list-style: none;}
 a {text-decoration: none; color: #111;}
 input, textarea {outline: none;}
 
+
 #container {
     width: 800px;
     height: auto;
     margin: 0 auto;
+}
+/*버튼 커서*/
+#btnCheck > img{
+	 cursor: pointer;
+}
+#btnSendEmail > img{
+	 cursor: pointer;
+}
+.btnZip > img{
+	 cursor: pointer;
+}
+.btnSubmit{
+	 cursor: pointer;
 }
 
 /* 헤더 */
@@ -212,6 +226,10 @@ main {
 }
 .register > form > div {
     float: right;
+}
+.register > form .auth{
+	display: none;
+	margin-top: 4px;
 }
 
 /* 글목록 */
