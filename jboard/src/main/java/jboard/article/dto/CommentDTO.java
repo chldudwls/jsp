@@ -1,4 +1,4 @@
-package article.dto;
+package jboard.article.dto;
 
 public class CommentDTO {
 	private int no;

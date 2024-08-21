@@ -1,4 +1,4 @@
-package article.dto;
+package jboard.article.dto;
 
 public class ArticleDTO {
 	private int no;
@@ -11,12 +11,14 @@ public class ArticleDTO {
 	private String writer;
 	private String regip;
 	private String rdate;
+	
 	@Override
 	public String toString() {
 		return "ArticleDTO [no=" + no + ", cate=" + cate + ", title=" + title + ", content=" + content + ", comment="
 				+ comment + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip=" + regip + ", rdate="
 				+ rdate + "]";
 	}
+	
 	public int getNo() {
 		return no;
 	}

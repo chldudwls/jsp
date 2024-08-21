@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +43,7 @@
                 </div>
 
                 <!-- 글쓰기 버튼 -->
-                <a href="#" class="btnWrite">글쓰기</a>
+                <a href="/jboard/article/write.do" class="btnWrite">글쓰기</a>
             </section>
         </main>
         <%@ include file="./_footer.jsp" %>

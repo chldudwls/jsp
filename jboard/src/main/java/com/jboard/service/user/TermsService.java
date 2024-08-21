@@ -2,11 +2,9 @@ package com.jboard.service.user;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import user.dao.TermsDAO;
-import user.dto.TermsDTO;
+import jboard.user.dao.TermsDAO;
+import jboard.user.dto.TermsDTO;
 
 public class TermsService {
 	private static TermsService instance = new TermsService();

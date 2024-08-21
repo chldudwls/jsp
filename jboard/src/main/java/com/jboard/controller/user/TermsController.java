@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import user.dto.TermsDTO;
+import jboard.user.dto.TermsDTO;
 
 @WebServlet("/user/terms.do")
 public class TermsController extends HttpServlet{

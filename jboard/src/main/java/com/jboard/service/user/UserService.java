@@ -12,8 +12,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import user.dao.UserDAO;
-import user.dto.UserDTO;
+import jboard.user.dao.UserDAO;
+import jboard.user.dto.UserDTO;
 
 public enum UserService {
 	INSTANCE;
@@ -73,8 +73,8 @@ public enum UserService {
 		dao.insertUser(dto);
 	}
 
-	public UserDTO selectUser(String uid) {
-		return dao.selectUser(uid);
+	public UserDTO selectUser(String uid, String pass) {
+		return dao.selectUser(uid,pass);
 	}
 
 	public List<UserDTO> selectUsers() {

@@ -1,8 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script>
+	const success = ${success};
+	
+	if(success == 100){
+		alert('아이디, 비밀번호가 다릅니다 다시 입력하세요.');
+	}else if( success == 101){
+		alert('정상적으로 로그아웃 되었습니다.')
+	}else if( success == 102){
+		alert('먼저 로그인 하세요.')
+	}
+
+</script>
 <%@ include file="./_header.jsp" %>
 <main>
     <section class="login">
-        <form action="/jboard/article/list.do">
+        <form action="/jboard/user/login.do" method="post">
             <table border="0">
                 <tr>
                     <td><img src="/jboard/images/login_ico_id.png" alt="아이디"></td>

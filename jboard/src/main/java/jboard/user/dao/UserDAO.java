@@ -1,11 +1,11 @@
-package user.dao;
+package jboard.user.dao;
 
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import user.dto.UserDTO;
+import jboard.user.dto.UserDTO;
 import util.DBHelper;
 import util.Sql;
 
@@ -22,7 +22,7 @@ public class UserDAO extends DBHelper{
 	public int selectCountUser(String type, String value) {
 		int result = 0;
 		
-StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_USER);
+		StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_USER);
 		
 		if(type.equals("uid")) {
 			sql.append(Sql.WHERE_UID);
@@ -53,7 +53,9 @@ StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_USER);
 	
 	
 	
-	public void insertUser(UserDTO dto) {try {
+	public void insertUser(UserDTO dto) {
+		
+		try {
 		conn = getConnection();
 		psmt = conn.prepareStatement(Sql.INSERT_USER);
 		psmt.setString(1,dto.getUid());
@@ -74,13 +76,40 @@ StringBuilder sql = new StringBuilder(Sql.SELECT_COUNT_USER);
 	}
 	}
 	
-	public UserDTO selectUser(String uid) {
+	public UserDTO selectUser(String uid, String pass) {
+		UserDTO user = null;
 		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_USER);
+			psmt.setString(1, uid);
+			psmt.setString(2, pass);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				user = new UserDTO();
+				
+				user.setUid(rs.getString(1));
+				user.setPass(rs.getString(2));
+				user.setName(rs.getString(3));
+				user.setNick(rs.getString(4));
+				user.setEmail(rs.getString(5));
+				user.setHp(rs.getString(6));
+				user.setRole(rs.getString(7));
+				user.setZip(rs.getString(8));
+				user.setAddr1(rs.getString(9));
+				user.setAddr1(rs.getString(10));
+				user.setRegip(rs.getString(11));
+				user.setRegDate(rs.getString(12));
+				user.setLeaveDate(rs.getString(13));
+			}
+			
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return null;
+		return user;
 	}
 	
 	public List<UserDTO> selectUsers() {
