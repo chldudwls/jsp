@@ -14,7 +14,7 @@
             <section class="modify">
                 <h3>글수정</h3>
                 <article>
-                    <form action="#">
+                    <form action="/jboard/article/view.do">
                         <table>
                             <tr>
                                 <td>제목</td>
@@ -32,7 +32,7 @@
                             </tr>
                         </table>
                         <div>
-                            <a href="#" class="btnCancel">취소</a>
+                            <a href="/jboard/article/view.do" class="btnCancel">취소</a>
                             <input type="submit"  class="btnWrite" value="수정완료">
                         </div>
                     </form>

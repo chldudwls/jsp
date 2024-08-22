@@ -55,8 +55,8 @@
                         </span>
                         <textarea name="comment" readonly>댓글 샘플입니다.</textarea>
                         <div>
-                            <a href="#">삭제</a>
-                            <a href="#">수정</a>
+                            <a href="/jboard/article/delete.do">삭제</a>
+                            <a href="/jboard/article/modify.do">수정</a>
                         </div>
                     </article>
                     <p class="empty">

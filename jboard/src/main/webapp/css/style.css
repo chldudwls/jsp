@@ -291,6 +291,7 @@ main {
     position: absolute;
     bottom: 14px;
     right: 0;
+     cursor: pointer;
 }
 
 /* 글보기 */
