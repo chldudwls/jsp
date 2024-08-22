@@ -1,7 +1,11 @@
 package com.jboard.service.user;
 
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,9 +16,12 @@ import org.slf4j.LoggerFactory;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 import jboard.article.dao.FileDAO;
 import jboard.article.dto.FileDTO;
+
+
 
 public enum FileService {
 	INSTANCE;
@@ -25,7 +32,7 @@ public enum FileService {
 		dao.insertFile(dto);
 	}
 	
-	public FileDTO selectFile(int fno) {
+	public FileDTO selectFile(String fno) {
 		return dao.selectFile(fno);
 	}
 	public List<FileDTO> selectFiles() {
@@ -33,6 +40,9 @@ public enum FileService {
 	}
 	public void updateFile(FileDTO dto) {
 		dao.updateFile(dto);
+	}
+	public void updateFileDownloadCount(String fno) {
+		dao.updateFileDownloadCount(fno);
 	}
 	public void deleteFile(int fno) {
 		dao.deleteFile(fno);
@@ -87,7 +97,42 @@ public enum FileService {
 		
 		return files;
 	}
-	public void fileDownload() {
+	public void fileDownload(HttpServletRequest req, HttpServletResponse resp){
 		
+		FileDTO fileDto = (FileDTO)req.getAttribute("fileDto");
+		
+		BufferedInputStream bis = null;
+		BufferedOutputStream bos = null;
+		try {
+			// response 헤더정보 수정
+			resp.setContentType("application/octet-stream");
+			resp.setHeader("Content-Disposition", "attachment; filename="+URLEncoder.encode(fileDto.getoName(), "utf-8"));
+			resp.setHeader("Content-Transfer-Encoding", "binary");
+			resp.setHeader("Pragma", "no-cache");
+			resp.setHeader("Cache-Control", "private");
+	
+			
+			// 파일 내용 스트림 처리
+			ServletContext ctx = req.getServletContext();
+			String path = ctx.getRealPath("/uploads");
+			File file = new File(path + File.separator + fileDto.getsName());
+			
+			bis = new BufferedInputStream(new FileInputStream(file));
+			bos = new BufferedOutputStream(resp.getOutputStream());
+			
+			bis.transferTo(bos);
+			bos.flush();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			
+			try {
+				bis.close();
+				bos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

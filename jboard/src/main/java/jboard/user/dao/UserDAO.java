@@ -116,7 +116,11 @@ public class UserDAO extends DBHelper{
 		return null;
 	}
 	
-	public void updateUser(UserDTO dto) {}
+	public void updateUser(UserDTO dto) {
+		
+	}
 	
-	public void deleteUser(String uid) {}
+	public void deleteUser(String uid) {
+		
+	}
 }

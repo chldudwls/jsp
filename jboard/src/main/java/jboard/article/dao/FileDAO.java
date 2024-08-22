@@ -26,19 +26,56 @@ public class FileDAO extends DBHelper{
 			psmt.setString(2, dto.getoName());
 			psmt.setString(3, dto.getsName());
 			psmt.executeUpdate();
-			closeAll();
 		} catch (Exception e) {
-			logger.debug(e.getMessage());
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
 		}
 	}
-	public FileDTO selectFile(int fno) {
-		
-		return null;
+	public FileDTO selectFile(String fno) {
+		FileDTO fileDto = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_FILE);
+			psmt.setString(1, fno);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				fileDto = new FileDTO();
+				fileDto.setFno(rs.getInt(1));
+				fileDto.setAno(rs.getInt(2));
+				fileDto.setoName(rs.getString(3));
+				fileDto.setsName(rs.getString(4));
+				fileDto.setDownload(rs.getInt(5));
+				fileDto.setRdate(rs.getString(6));
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return fileDto;
 	}
 	public List<FileDTO> selectFiles() {
 		return null;
 	}
 	public void updateFile(FileDTO dto) {
+		
+	}
+	
+	
+	
+	public void updateFileDownloadCount(String fno) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_FILE_DOWNLOAD_COUNT);
+			psmt.setString(1, fno);
+			psmt.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
 	}
 	public void deleteFile(int fno) {
 		

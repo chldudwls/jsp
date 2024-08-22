@@ -1,5 +1,7 @@
 package jboard.article.dto;
 
+import java.util.List;
+
 public class ArticleDTO {
 	private int no;
 	private String cate;
@@ -11,12 +13,35 @@ public class ArticleDTO {
 	private String writer;
 	private String regip;
 	private String rdate;
+	private int startNo;
 	
+	// 추가필드
+	private String nick;
+	private List<FileDTO> files;
+	
+	public List<FileDTO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<FileDTO> files) {
+		this.files = files;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	@Override
 	public String toString() {
 		return "ArticleDTO [no=" + no + ", cate=" + cate + ", title=" + title + ", content=" + content + ", comment="
 				+ comment + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip=" + regip + ", rdate="
-				+ rdate + "]";
+				+ rdate + ", startNo=" + startNo + "]";
+	}
+	public int getStartNo() {
+		return startNo;
+	}
+	public void setStartNo(int startNo) {
+		this.startNo = startNo;
 	}
 	
 	public int getNo() {
@@ -76,8 +101,10 @@ public class ArticleDTO {
 	public String getRdate() {
 		return rdate;
 	}
+	public void setRdateSubString(String rdate) {
+		this.rdate = rdate.substring(0, 10);
+	}
 	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
-	
 }

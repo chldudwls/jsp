@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,26 +17,32 @@
                 <table>
                     <tr>
                         <td>제목</td>
-                        <td><input type="text" name="title" value="제목입니다." readonly/></td>
+                        <td><input type="text" name="title" value="${articleDto.title}" readonly/></td>
                     </tr>
+                   <c:if test="${articleDto.file > 0}">
                     <tr>
                         <td>첨부파일</td>
                         <td>
-                            <a href="#">2020년 상반기 매출자료.xls</a>
-                            <span>7회 다운로드</span>
+                        <c:forEach var="file" items="${articleDto.files}">
+							<p style="margin-top: 4px; ">
+	                            <a href="/jboard/article/fileDownload.do?fno=${file.fno}">${file.oName}</a>
+                                <span>${file.download}회 다운로드</span>
+							</p>
+                        </c:forEach>
                         </td>
                     </tr>
+                    </c:if>
                     <tr>
                         <td>내용</td>
                         <td>
-                            <textarea name="content" readonly>내용 샘플입니다.</textarea>
+                            <textarea name="content" readonly>${articleDto.content}</textarea>
                         </td>
                     </tr>
                 </table>
                 <div>
-                    <a href="#" class="btnDelete">삭제</a>
-                    <a href="#" class="btnModify">수정</a>
-                    <a href="#" class="btnList">목록</a>
+                    <a href="/jboard/article/delete.do" class="btnDelete">삭제</a>
+                    <a href="/jboard/article/modify.do" class="btnModify">수정</a>
+                    <a href="/jboard/article/list.do" class="btnList">목록</a>
                 </div>  
                 
                 <!-- 댓글리스트 -->
@@ -43,7 +50,7 @@
                     <h3>댓글목록</h3>
                     <article class="comment">
                         <span>
-                            <span>길동이</span>
+                            <span>${sessUser.nick}</span>
                             <span>20-05-13</span>
                         </span>
                         <textarea name="comment" readonly>댓글 샘플입니다.</textarea>
@@ -63,7 +70,7 @@
                     <form action="#">
                         <textarea name="comment"></textarea>
                         <div>
-                            <a href="#" class="btnCancel">취소</a>
+                            <a href="/jboard/article/list.do" class="btnCancel">취소</a>
                             <input type="submit" class="btnWrite" value="작성완료"/>
                         </div>
                     </form>
