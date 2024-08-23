@@ -2,7 +2,7 @@ package com.jboard.controller.user;
 
 import java.io.IOException;
 
-import com.jboard.service.user.TermsService;
+import com.jboard.service.TermsService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

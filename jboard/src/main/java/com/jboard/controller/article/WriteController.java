@@ -3,9 +3,8 @@ package com.jboard.controller.article;
 import java.io.IOException;
 import java.util.List;
 
-
-import com.jboard.service.user.ArticleService;
-import com.jboard.service.user.FileService;
+import com.jboard.service.ArticleService;
+import com.jboard.service.FileService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

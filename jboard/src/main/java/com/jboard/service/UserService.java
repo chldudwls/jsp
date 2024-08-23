@@ -1,4 +1,4 @@
-package com.jboard.service.user;
+package com.jboard.service;
 
 import java.util.List;
 import java.util.Properties;

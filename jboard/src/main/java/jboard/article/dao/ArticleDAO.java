@@ -52,7 +52,7 @@ public class ArticleDAO extends DBHelper{
 			try {
 				conn.rollback();
 			} catch (Exception e2) {
-				logger.debug(e.getMessage());
+				logger.error(e.getMessage());
 			}
 		}finally {
 			closeAll();
@@ -78,7 +78,7 @@ public class ArticleDAO extends DBHelper{
 		return total;
 	}
 	
-	public ArticleDTO selectArticle(String no) {
+public ArticleDTO selectArticle(String no) {
 		
 		ArticleDTO dto = null;
 		List<FileDTO> files = new ArrayList<FileDTO>();
@@ -90,7 +90,7 @@ public class ArticleDAO extends DBHelper{
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				if(dto == null) { //2번 째 반복때 바로 fileDTO로 가도록
+				if(dto == null) {
 					dto = new ArticleDTO();
 					dto.setNo(rs.getInt(1));
 					dto.setCate(rs.getString(2));
@@ -103,25 +103,24 @@ public class ArticleDAO extends DBHelper{
 					dto.setRegip(rs.getString(9));
 					dto.setRdate(rs.getString(10));
 				}
+				
 				FileDTO fileDto = new FileDTO();
 				fileDto.setFno(rs.getInt(11));
 				fileDto.setAno(rs.getInt(12));
-				fileDto.setoName(rs.getString(13));
-				fileDto.setsName(rs.getString(14));
+				fileDto.setoName(rs.getString(13));  
+				fileDto.setsName(rs.getString(14));  
 				fileDto.setDownload(rs.getInt(15));
 				fileDto.setRdate(rs.getString(16));
 				files.add(fileDto);
 			}
-				
+			
 			dto.setFiles(files);
 			
-			
-		} catch (Exception e) {
-			logger.debug(e.getMessage());
+		}catch (Exception e) {
+			logger.error(e.getMessage());
 		}finally {
 			closeAll();
 		}
-	
 		return dto;
 	}
 	public List<ArticleDTO> selectArticles(int start) {
@@ -162,7 +161,7 @@ public class ArticleDAO extends DBHelper{
 			psmt.setString(1, no);
 			psmt.executeUpdate();
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			logger.debug(e.getMessage());
 		}finally {
 			closeAll();
 		}

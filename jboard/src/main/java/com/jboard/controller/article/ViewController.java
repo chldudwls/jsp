@@ -1,8 +1,10 @@
 package com.jboard.controller.article;
 
 import java.io.IOException;
+import java.util.List;
 
-import com.jboard.service.user.ArticleService;
+import com.jboard.service.ArticleService;
+import com.jboard.service.CommentService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -11,11 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jboard.article.dto.ArticleDTO;
+import jboard.article.dto.CommentDTO;
 
 @WebServlet("/article/view.do")
 public class ViewController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	private ArticleService service = ArticleService.INSTANCE;
+	private CommentService commentService = CommentService.INSTSNCE;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String no = req.getParameter("no");
@@ -25,10 +29,14 @@ public class ViewController extends HttpServlet{
 		
 		//파일 조회 카운트 업데이트
 		service.updateArticleHitCount(no);
-		//
-		req.setAttribute("articleDto", articleDto);
 		
-		//
+		//댓글 조회
+		List<CommentDTO> comments = commentService.selsctComments(no);
+		//공유 참조
+		req.setAttribute("articleDto", articleDto);
+		req.setAttribute("comments", comments);
+		
+		//포워드
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/article/view.jsp");
 		dispatcher.forward(req, resp);
 	}

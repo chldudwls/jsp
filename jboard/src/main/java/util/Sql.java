@@ -45,6 +45,8 @@ public class Sql {
 											+ "`regip`=?,"
 											+ "`rdate`=NOW()";
 	
+
+													
 	public static final String INSERT_FILE="insert into file set"
 											+"`ano`=?,"
 											+"`oName`=?,"
@@ -62,8 +64,22 @@ public class Sql {
 	
 	public static final String UPDATE_ARTICLE_HIT_COUNT="update article set `hit` = `hit` + 1 where `no`=?";
 	
+	public static final String SELECT_COMMENT="select a.*, b.nick from `comment` as a "
+												+ "join `user` as b on a.writer = b.uid "
+												+ "where `no`=? ";
 	
-	
+	public static final String SELECT_COMMENTS="select a.*, b.nick from `comment` as a "
+												+ "join `user` as b on a.writer = b.uid "
+												+ "where `parent`=? "
+												+ "order by no";
+	public static final String INSERT_COMMENT="insert into `comment` set "
+			+"`parent`=?, "
+			+"`content`=?, "
+			+"`writer`=?, "
+			+"`regip`=?, "
+			+"`rdate`=NOW()";
+	public static final String UPDATE_COMMENT="update `comment` set `content`=? where `no`=?";
+	public static final String DELETE_COMMENT="delete from `comment` where `no`=?";
 	
 	
 	

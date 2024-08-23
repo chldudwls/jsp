@@ -2,7 +2,7 @@ package com.jboard.controller.user;
 
 import java.io.IOException;
 
-import com.jboard.service.user.UserService;
+import com.jboard.service.UserService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

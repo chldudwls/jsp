@@ -3,7 +3,7 @@ package com.jboard.controller.article;
 import java.io.IOException;
 import java.util.List;
 
-import com.jboard.service.user.ArticleService;
+import com.jboard.service.ArticleService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,6 +22,7 @@ public class ListController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		String pg = req.getParameter("pg");
 		String no = req.getParameter("no");
 		// 현제 페이지 번호

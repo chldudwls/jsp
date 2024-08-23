@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jboard.service.user.UserService;
+import com.jboard.service.UserService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
