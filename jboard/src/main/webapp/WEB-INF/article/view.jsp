@@ -18,42 +18,47 @@
 		//동적 이벤트 처리
 		document.addEventListener('click', function(e) {
 			
-			//수정 완료
-			if(e.target.classList == 'commentUpdate'){
-				e.preventDefault();
 				
 				const article = e.target.closest('article');
 				const textarea = article.querySelector('textarea');
+				const commentRemove  = article.querySselector('.commentRemove');
+				const commentCancel = article.querySselector('.commentCancel');
+				const commentModiy = article.querySselector('.commentModify');
 				
-				const no = e.target.dataset.no;
-				const comment = textarea.value;
 				
-				const formData = new FormData();
-				formData.append("no", no);
-				formData.append("comment", comment);
 				
+				
+			//수정 완료
+			if(e.target.classList == 'commentUpdate'){
+				e.preventDefault();
+				const mode = commentModify.innerText;
+				
+				if(mode == '수정'){
+					originalText = textarea.value;
+					textareaEditMpde(true);					
+				
+				}else{
+					//수정완료
+					const no = e.target.dataset.no;
+					const comment = textarea.value;
+					
+					const formData = new FormData();
+					formData.append("no", no);
+					formData.append("comment", comment);
 				fetch('/jboard/comment/modify.do',{
 							method: 'POST',
 							body: formData
+				}
 						})
 						.then(resp => resp.json())
 						.then(data =>{
 							console.log(data);
 							
 							if(data.result != null){
-								alert('수정 완료');
-								
-								textarea.readOnly = true;
-								textarea.style.background = 'transparent';
-								textarea.style.border= 'none';
-								e.target.innerText = '수정';
-								
-								const updateBtn = article.querySelector('.commentUpdate');
-								if(updateBtn){
-									updateBtn.style.display = 'none';
-								}
-								
+								alert('댓글이 수정되었습니다');
+								textareaEditMode(false);
 							}
+							
 						})
 						.catch(err => {
 							
@@ -61,23 +66,16 @@
 						});
 			}
 			//수정
-			if(e.target.classList == 'commentModify'){
-				e.preventDefault();
+			function textareaEditMode(edit){
 				
-				const article = e.target.closest('article');
-				const textarea = article.querySelector('textarea');
-				
-				const mode = e.target.innerText;
-
-				if(mode == '수정'){
-					originalText = textarea.value;
-					
-					
+			if(edit){
+					// 수정모드				
 					textarea.readOnly = false;
 					textarea.style.background = 'white';
 					textarea.style.border= '1px solid #555';
 					textarea.focus();
-					e.target.innerText = '취소';
+					commentModify.innerText = '수정완료';
+					commentCancel.style.
 					
 					
 					const updateBtn = article.querySelector('.commentUpdate');
@@ -87,6 +85,7 @@
 					
 					
 				}else{
+					// 일반모드
 					textarea.value = originalText; 
 
 					textarea.readOnly = true;
@@ -101,6 +100,7 @@
 					}
 					
 				}
+			}
 				
 			}
 			//삭제
