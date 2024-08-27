@@ -248,7 +248,6 @@
 	                    <c:if test="${empty comments}"> <!-- comment가 없으면 empty 가 실행 -->
 		                    <p class="empty">등록된 댓글이 없습니다.</p>
 	                    </c:if>
-	                    
                 </section>
     
                 <!-- 댓글입력폼 -->
