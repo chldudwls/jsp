@@ -154,6 +154,7 @@ public ArticleDTO selectArticle(String no) {
 		}
 		return articles;
 	}
+	
 	public void updateArticleHitCount(String no) {
 		try {
 			conn = getConnection();

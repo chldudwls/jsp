@@ -3,6 +3,9 @@ package com.jboard.controller.article;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jboard.service.ArticleService;
 
 import jakarta.servlet.RequestDispatcher;
@@ -17,7 +20,7 @@ import jboard.article.dto.PageGroupDTO;
 @WebServlet("/article/list.do")
 public class ListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	
+
 	private ArticleService service = ArticleService.INSTANCE;
 	
 	@Override
