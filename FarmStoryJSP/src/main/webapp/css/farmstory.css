@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  font: 12px 'noto sans korean';
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #111;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+header{
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+header > div {
+  width: 100%;
+  box-sizing: border-box;
+}
+header > div >* {
+  width: 980px;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+header > div > .top {
+  position: relative;
+  height: 92px;
+}
+
+.top > p {
+  float: right;
+}
+
+.top > .headerLogo {
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  margin-left: -95px;
+}
+.top > .headerTxt {
+  position: absolute;
+  right: 0px;
+  bottom: 20px;
+  margin-left: -95px;
+}
+
+header > div > nav {
+  height: 50px;
+}
+
+header div>nav>ul>li {
+  float: left;
+  height: 100%;
+}
+
+header div>nav>ul>li>a {
+  display: block;
+  width: 196px;
+  height: 100%;
+  background-image: url("../images/head_menu_line.png");
+  background-repeat: no-repeat;
+  background-position: -2px -7px;
+  box-sizing: border-box;
+  position: relative;
+}
+.nav >li>a > img {
+  padding-top: 5px;
+  width: auto;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.navInfo > img:hover {
+  content : url("../images/head_menu1_ov.png")
+}
+.navShop > img:nth-child(1):hover{
+  content : url("../images/head_menu2_ov.png")
+}
+.navFarm > img:hover {
+  content : url("../images/head_menu3_ov.png")
+}
+.navEven > img:hover{
+  content : url("../images/head_menu4_ov.png")
+}
+.navComm > img:hover {
+  content : url("../images/head_menu5_ov.png")
+}
+
+.navShop > img:nth-child(2) {
+  position: absolute;
+  left : 95px;
+  top : -25px;
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+
+footer > div {
+  width: 980px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+}
+footer > div > img {
+  position: absolute;
+  top : -5px;
+}
+footer > div > article > .footerinfo {
+  line-height: 18px;
+  font-size: 10.5px;
+  position: absolute;
+  left: 250px;
+  top : 20px;
+  color: #636262;
+}
+footer > div > article > .copyright {
+  color : gray;
+  position: absolute;
+  left: 250px;
+  bottom : 30px;
+}
+footer > div > article > .pageVer {
+  position: absolute;
+  right : 0px;
+  bottom : 30px;
+  color : gray;
+}
+/* !!!!!!!header - footer Setting!!!!!!!*/
+
+
+
