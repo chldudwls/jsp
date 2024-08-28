@@ -38,6 +38,9 @@ public class ProductDto {
 	public void setStartNo(int startNo) {
 		this.startNo = startNo;
 	}
+	public void setStartNo(String startNo) {
+		this.startNo = Integer.parseInt(startNo);
+	}
 	public int getProNo() {
 		return proNo;
 	}

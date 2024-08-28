@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -214,6 +215,44 @@
             border-radius: 3px;
         }
     </style>
+<script>
+    window.onload = function () {
+        const countFruitInput = document.querySelector('input[name="countfruit"]');
+        countFruitInput.addEventListener('input', allowOnlyNumbers);
+
+        // 페이지 로드 시 초기 합계 업데이트
+        updateTotal();
+    };
+
+    function allowOnlyNumbers(event) {
+        const input = event.target;
+        input.value = input.value.replace(/[^0-9]/g, '');
+        updateTotal();
+    }
+
+    function updateTotal() {
+        // ${ProductDto.proPrice} 대신 기본값으로 2000원을 설정
+        const price = ${ProductDto.proPrice};
+        const quantity = parseInt(document.querySelector('input[name="countfruit"]').value, 10);
+
+        if (!isNaN(price) && !isNaN(quantity)) {
+            const total = price * quantity;
+            document.querySelector('.colorRed').textContent = total+`원`;
+        } else {
+            // 가격이나 수량이 올바르지 않은 경우
+            document.querySelector('.colorRed').textContent = '0원';
+        }
+    }
+    function addToCart() {
+        var quantity = document.getElementById('countfruit').value;
+        location.href = `FarmStoryJSP/market/cart.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
+    }
+
+    function buyNow() {
+        var quantity = document.getElementById('countfruit').value;
+        location.href = `FarmStoryJSP/market/order.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
+    }
+</script>
 </head>
 
 <body>
@@ -237,25 +276,25 @@
                         </nav>
                         <p class="section-title">기본정보</p>
                         <div class="product-info">
-                            
-                            <img src="../images/market_item_thumb.jpg" alt="상품 이미지">
+                            <img src="${ProductDto.proImg1}" alt="상품 이미지">
                             <div class="product-details">
+                            
                                 <table>
                                     <tr>
                                         <th>상품명</th>
-                                        <td>딸기 500g</td>
+                                        <td>${ProductDto.proName}</td>
                                     </tr>
                                     <tr>
                                         <th>상품코드</th>
-                                        <td>01</td>
+                                        <td>${ProductDto.proNo}</td>
                                     </tr>
                                     <tr>
                                         <th>배송비</th>
-                                        <td>5,000원 <span>3만원이상 무료배송</span></td>
+                                        <td>${ProductDto.proDeliveryfee}원 <span>3만원이상 무료배송</span></td>
                                     </tr>
                                     <tr>
                                         <th>판매가격</th>
-                                        <td>4,000원</td>
+                                        <td>${ProductDto.proPrice}원</td>
                                     </tr>
                                     <tr>
                                         <th>구매수량</th>
@@ -263,19 +302,22 @@
                                     </tr>
                                     <tr>
                                         <th>합계</th>
-                                        <td class="colorRed">4,000원</td>
+                                        <td class="colorRed"></td>
                                     </tr>
                                 </table>
                                 <div class="button-container">
-                                    <button class="cart-button">장바구니</button>
-                                    <button class="buy-button">바로구매</button>
+		                             <!-- 장바구니 버튼 -->
+								    <button type="submit" name="action" value="addToCart" class="cart-button">장바구니</button>
+								    <!-- 바로구매 버튼 -->
+								    <button type="submit" name="action" value="buyNow" class="buy-button">바로구매</button>
                                 </div>
                             </div>
                         </div>
                         
                         <div>
                             <p class="section-title">상품설명</p>
-                            <img src="../images/market_detail_sample.jpg" alt="">
+                            <img src="${ProductDto.proImg2}" alt="">
+                            <img src="${ProductDto.proImg3}" alt="">
                         </div>
                     </article>
                     <div>

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/order/list.do")
+@WebServlet(urlPatterns = {"/admin/order/list.do"})
 public class OrderListController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 

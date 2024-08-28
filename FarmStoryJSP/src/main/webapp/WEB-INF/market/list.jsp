@@ -160,6 +160,7 @@ td del:nth-child(3) {
 	opacity: 0.9;
 	text-decoration: underline;
 }
+
 </style>
 </head>
 
@@ -208,7 +209,7 @@ td del:nth-child(3) {
 										<td>${product.proName}</td>
 										<td><a href="/FarmStoryJSP/view.do?no=${product.proNo}">${product.proType}</a></td>
 										<td>${product.proSale}</td>
-										<td>${product.proPoint}</td>
+										<td>${product.proPoint}p</td>
 										<td><strong>${product.salePrice}</strong>
 											<del>${product.proPrice}<br>
 											</del> <del>원</del></td>
@@ -225,10 +226,10 @@ td del:nth-child(3) {
 							<c:forEach var="i" begin="${pageGroup.start}"
 								end="${pageGroup.end}">
 								<a href="/FarmStoryJSP/market/list.do?pg=${i}"
-									class="num ${currentPage == i ? 'current':'off'}">${i}</a>
+									class="num ${currentPage == i ? 'current':'off'}">[${i}]</a>
 							</c:forEach>
 						</div>
-						<c:if test="${pageGroup.end < pageGroup.total}">
+						<c:if test="${pageGroup.end < pageGroup.group}">
 							<a href="/FarmStoryJSP/market/list.do?pg=${pageGroup.end - 1}"
 								class="next">></a>
 						</c:if>

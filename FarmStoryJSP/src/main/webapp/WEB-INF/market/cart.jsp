@@ -298,7 +298,7 @@
                             <td colspan="9" style="color: #8d8d8d;">장바구니에 상품이 없습니다.</td>
                         </tr>
                         <tr>
-                            <td id="dd"><input type="checkbox"></td>
+                            <td id="dd"><input type="checkbox" name="selectedItems"></td>
                             <td><a href="#"><img src="../images/market_item1.jpg" alt="사과"></a></td>
                             <td id="dd">과일</td>
                             <td><a href="#" style="font-weight: bold;">사과 500g</a></td>

@@ -14,9 +14,8 @@ public class SQL{
 													+ "`proimg3`=?,"
 													+ "`proETC`=?,"
 													+ "proRdate=NOW()";
-	public static final String SELECT_PRODUCT 	= "SELECT * FROM product LIMIT ?, 10";
-	public static final String SELECT_PRODUCTS	= "SELECT * from `product` where `proNo`=?";
-													
+	public static final String SELECT_PRODUCT 	= "SELECT * from `product` where `prono`=?";
+	public static final String SELECT_PRODUCTS	= "SELECT * from `product` ";
 	public static final String UPDATE_PRODUCTS 	= "UPDATE `product` set "
 													+ "`proname`=?,"
 													+ "`protype`=?,"
@@ -46,6 +45,7 @@ public class SQL{
 													+ "`artRdate`=NOW()";
 	public static final String SELECT_ARTICLE 	= "SELECT * FROM `ARTICLE` where `artNo`=?";
 	public static final String SELECT_ARTICLES 	= "SELECT * FROM `ARTICLE`";
+	public static final String SELECT_ARTICLES_CATE		= "SELECT * FROM `ARTICLE` WHERE `artcate` = ? ORDER BY `ARTNO` DESC LIMIT ?, 10";
 	public static final String UPDATE_ARTICLE 	= "UPDATE `ARTICLE` set "
 													+ "`artGroup`=?,"
 													+ "`artCate`=?,"
@@ -62,8 +62,13 @@ public class SQL{
 	//조회수 증가
 	public static final String UPDATE_HIT_COUNT = "update `ARTICLE` set `arthit` = `arthit` + 1 where `artNo`=?";
 	//그룹별 + 카테고리별 총 글 갯수
-	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
-	
+	public static final String SELECT_ARTICLE_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
+	//제품 페이지 최대수
+	public static final String SELECT_MAX_NO = "select MAX(`no`) from `product`";
+	//제품 총 수
+	public static final String SELECT_COUNT_TOTALS="SELECT COUNT(*) FROM `product`";
+	//가지고 오는 제품의 수 10개 제한
+	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product LIMIT ?, 10";
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
 													+ "`comParent`=?,"
@@ -72,7 +77,10 @@ public class SQL{
 													+ "`comRegip`=?,"
 													+ "`comRdate`=NOW()";
 	public static final String SELECT_COMMENT 	= "SELECT * FROM `COMMENT` where `ComNo`=?";
-	public static final String SELECT_COMMENTS 	= "SELECT * FROM `COMMENT`";
+	public static final String SELECT_COMMENTS = "SELECT a.*, b.usernick from `comment` AS a "
+													+ "JOIN `user` AS b ON a.comwriter = b.userid "
+													+ "where `comparent`=? "
+													+ "order by comno";
 	public static final String UPDATE_COMMENT 	= "UPDATE `COMMENT` set "
 													+ "`comParent`=?,"
 													+ "`comContent`=?,"
@@ -113,6 +121,9 @@ public class SQL{
 												+ "where `UserId`=?";
 	public static final String DELETE_USERS = "DELETE FROM `User` where `UserId`=?";
 	
+	//유저 수 검색
+	public static final String SELECT_USERS_COUNT = "SELECT COUNT(*) FROM `User` ";
+	
 	//FILE
 	public static final String INSERT_FILE 	= "INSERT INTO `file` set "
 												+ "`ano`=?,"
@@ -151,11 +162,30 @@ public class SQL{
 	public static final String DELETE_ORDER = "DELETE FROM `order` " 
 												+"WHERE orderNo = ?";
 	
+	//페이지 숫자 찾기용
+	public static final String SELECT_PAGED_USERS_BY_ROW_NUMBER = "WITH NumberedUsers AS ( "
+																	+ "SELECT *, ROW_NUMBER() OVER (ORDER BY `UserRegdate` DESC) AS `row_num` "
+																	+ "FROM `User`) "
+																	+ "SELECT * "
+																	+ "FROM `NumberedUsers` "
+																	+ "WHERE `row_num` BETWEEN ? AND ?";
 	
-	public static final String SELECT_MAX_NO = "select MAX(`no`) from `product`";
+	//아이디,닉네임,이메일,휴대폰번호 중복 검사
+	public static final String WHERE_UID = "WHERE `UserId`=?";
+	public static final String WHERE_NICK = "WHERE `UserNick`=?";
+	public static final String WHERE_EMAIL = "WHERE `UserEmail`=?";
+	public static final String WHERE_HP = "WHERE `UserHp`=?";
 	
-	public static final String SELECT_COUNT_TOTALs="SELECT COUNT(*) FROM `product`";
-	public static final String SELECT_PRODUCTs 	= "SELECT * FROM product LIMIT ?, 10";
+	//TERMS
+	public static final String SELECT_TERMS = "SELECT * FROM `terms`";
+	
+	//CART
+	public static final String SELECT_CARTS = "SELECT * FROM `cart` where `cartUid`=?";
+	public static final String INSERT_CART  = "INSERT into `cart` set "
+												+ "`cartUid`=?,"
+												+ "`cartProNo`=?,"
+												+ "`cartstock`=?";
+	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
 }
 
 /*package com.jboard.util;
@@ -196,6 +226,7 @@ public class SQL {
 												+ "JOIN	`user` AS u ON a.writer = u.uid "
 												+ "ORDER BY `no` DESC "
 												+ "LIMIT ?, 10";
+	public static final String SELECT_MAX_NO = "select MAX(`no`) from `article`";
 	public static final String INSERT_ARTICLE = "insert into article set "
 											+ "`title`=?,"
 											+ "`content`=?,"

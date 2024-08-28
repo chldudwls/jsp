@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/FarmStoryJSP/css/article.css">
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
   <title>Farmstory</title>
   <style>
@@ -73,7 +74,7 @@
     .mainArticle {
       margin: 0 0;
       width: 802px;
-      height : 650px;
+      height : auto;
       box-sizing: border-box;
       
     }
@@ -92,9 +93,9 @@
       <aside class="mainAside">
         <img src="../images/sub_aside_cate3_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="story.html"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
-          <li><a href="decorate.html"><img src="../images/sub_cate3_lnb2.png" alt=""></a></li>
-          <li><a href="school.html"><img src="../images/sub_cate3_lnb3_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=story"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow"><img src="../images/sub_cate3_lnb2.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=school"><img src="../images/sub_cate3_lnb3_ov.png" alt=""></a></li>
         </ul>
       </aside>
 
@@ -103,7 +104,7 @@
           <img src="../images/sub_nav_tit_cate3_tit3.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 농작물이야기 > <strong>귀농학교</strong></p>
         </nav>
-        <p>게시판 글목록/글쓰기/글보기/글수정 출력</p>
+        <%@ include file="/css/_article.jsp"%>
       </article>
     </section>
   </main>

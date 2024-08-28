@@ -43,6 +43,9 @@ header > div > .top {
 .top > p {
   float: right;
 }
+header a[href].logout {
+	display : none;
+}
 
 .top > .headerLogo {
   position: absolute;

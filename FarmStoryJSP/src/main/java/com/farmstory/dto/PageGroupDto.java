@@ -1,18 +1,15 @@
 package com.farmstory.dto;
 
 public class PageGroupDto {
-	private int start; 
+	private int group;
+	private int start;
 	private int end;
-	private int total;
-	@Override
-	public String toString() {
-		return "PageGroupDTO [start=" + start + ", end=" + end + ", total=" + total + "]";
+	
+	public int getGroup() {
+		return group;
 	}
-	public PageGroupDto(int start, int end, int total) {
-		super();
-		this.start = start;
-		this.end = end;
-		this.total = total;
+	public void setGroup(int group) {
+		this.group = group;
 	}
 	public int getStart() {
 		return start;
@@ -26,11 +23,20 @@ public class PageGroupDto {
 	public void setEnd(int end) {
 		this.end = end;
 	}
-	public int getTotal() {
-		return total;
+	public PageGroupDto(int start, int end) {
+		this.start = start;
+		this.end = end;
 	}
-	public void setTotal(int total) {
-		this.total = total;
+
+	public PageGroupDto(int start, int end,int group) {
+		this.start = start;
+		this.end = end;
+		this.group = group;
 	}
-	 
+	@Override
+	public String toString() {
+		return "PageGroupDto [group=" + group + ", start=" + start + ", end=" + end + "]";
+	}
+	
+	
 }

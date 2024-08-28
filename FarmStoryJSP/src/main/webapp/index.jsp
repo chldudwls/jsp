@@ -328,71 +328,20 @@ input, textarea {
 				<img src="/FarmStoryJSP/images/main_market_tit.png" alt="베스트 상품">
 			</div>
 			<div>
-				<a href="#">
-					<article>
-						<c:forEach var="product" items="${products}">
+				<c:forEach var="product" items="${products}">
+					<a href="/FarmStoryJSP/market/view.do?no${product.proNo}">
+						<article>
 							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
 							<h1>${product.proType}</h1>
 							<p>${product.proName}</p>
 							<div class="pricediscount">
-								<span class="price">4000원</span> <span class="discount">10%↓</span>
+								<span class="price">${product.proPrice}</span> <span
+									class="discount">${product.proSale}</span>
 							</div>
-							<h3>3,600원</h3>
-						</c:forEach>
-					</article>
-
-				</a> <a href="#">
-					<article>
-						<img src="/FarmStoryJSP/images/market_item2.jpg" alt="사과">
-						<h1>과일</h1>
-						<p>사과 500g</p>
-						<div class="pricediscount">
-							<span class="price">4000원</span> <span class="discount">10%↓</span>
-						</div>
-						<h3>3,600원</h3>
-					</article>
-				</a> <a href="#">
-					<article>
-						<img src="/FarmStoryJSP/images/market_item3.jpg" alt="사과">
-						<h1>과일</h1>
-						<p>사과 500g</p>
-						<div class="pricediscount">
-							<span class="price">4000원</span> <span class="discount">10%↓</span>
-						</div>
-						<h3>3,600원</h3>
-					</article>
-				</a> <a href="#">
-					<article>
-						<img src="/FarmStoryJSP/images/market_item4.jpg" alt="사과">
-						<h1>과일</h1>
-						<p>사과 500g</p>
-						<div class="pricediscount">
-							<span class="price">4000원</span> <span class="discount">10%↓</span>
-						</div>
-						<h3>3,600원</h3>
-					</article>
-				</a> <a href="#">
-					<article>
-						<img src="/FarmStoryJSP/images/market_item5.jpg" alt="사과">
-						<h1>과일</h1>
-						<p>사과 500g</p>
-						<div class="pricediscount">
-							<span class="price">4000원</span> <span class="discount">10%↓</span>
-						</div>
-						<h3>3,600원</h3>
-					</article>
-				</a> <a href="#">
-					<article>
-						<img src="/FarmStoryJSP/images/market_item6.jpg" alt="사과">
-						<h1>과일</h1>
-						<p>사과 500g</p>
-						<div class="pricediscount">
-							<span class="price">4000원</span> <span class="discount">10%↓</span>
-						</div>
-						<h3>3,600원</h3>
-					</article>
-				</a>
-
+							<h3>${product.salePrice}</h3>
+						</article>
+					</a>
+				</c:forEach>
 			</div>
 		</section>
 		<section class="section-haeder">
@@ -417,24 +366,16 @@ input, textarea {
 						<img src="/FarmStoryJSP/images/main_latest1_img.jpg" alt="텃밭가꾸기">
 						<table>
 							<tbody>
+								<c:forEach var="article" items="${articles}">
+									<c:if test="${article.artCate == '텃밭가꾸기'}">
+										<tr>
+											<td><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow" class="link">>${article.artTitle}</a></td>
+											<td>20-12-22</td>
+										</tr>
+									</c:if>
+								</c:forEach>
 								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
+									<td><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow" class="link">> 토마토! 건강하게 길러...</a></td>
 									<td>20-12-22</td>
 								</tr>
 							</tbody>

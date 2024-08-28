@@ -6,6 +6,7 @@
             <p>
               <a href="/FarmStoryJSP/index.do">HOME |</a>  
               <a href="/FarmStoryJSP/user/login.do">로그인 |</a>
+              <a href="/FarmStoryJSP/user/logout.do" class="logout">로그아웃 |</a>
               <a href="/FarmStoryJSP/user/register.do">회원가입 |</a>
               <a href="/FarmStoryJSP/admin/index.do">관리자 |</a>
               <a href="/FarmStoryJSP/community/chat.do">고객센터</a>
@@ -20,9 +21,9 @@
             <ul class="nav">
               <li><a href="/FarmStoryJSP/introduction/introduction.do" class="navInfo"><img src="/FarmStoryJSP/images/head_menu1.png" alt="headerMenu1"></a></li>
               <li><a href="/FarmStoryJSP/market/list.do" class="navShop"><img src="/FarmStoryJSP/images/head_menu2.png" alt="headerMenu2"><img src="/FarmStoryJSP/images/head_menu_badge.png" alt="" class="sale"></a></li>
-              <li><a href="/FarmStoryJSP/croptalk/story.do" class="navFarm"><img src="/FarmStoryJSP/images/head_menu3.png" alt="headerMenu3"></a></li>
-              <li><a href="/FarmStoryJSP/event/info.do" class="navEven"><img src="/FarmStoryJSP/images/head_menu4.png" alt="headerMenu4"></a></li>
-              <li><a href="/FarmStoryJSP/community/notice.do" class="navComm"><img src="/FarmStoryJSP/images/head_menu5.png" alt="headerMenu5"></a></li>
+              <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=story" class="navFarm"><img src="/FarmStoryJSP/images/head_menu3.png" alt="headerMenu3"></a></li>
+              <li><a href="/FarmStoryJSP/article/list.do?group=event&cate=info" class="navEven"><img src="/FarmStoryJSP/images/head_menu4.png" alt="headerMenu4"></a></li>
+              <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=notice" class="navComm"><img src="/FarmStoryJSP/images/head_menu5.png" alt="headerMenu5"></a></li>
             </ul>
           </nav>
         </div>

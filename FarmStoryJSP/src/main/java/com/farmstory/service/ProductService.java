@@ -37,23 +37,33 @@ public enum ProductService {
 		return currentPage;
 	}
 
-	// 현재 페이지 구룹 구하기
+	public int getProuctNO(String proNo) {
+		int getProuctNO = 1;
+		
+		if (proNo != null) {
+			getProuctNO = Integer.parseInt(proNo);
+		}
+		return getProuctNO;
+	}
+
+	// 현재 페이지 그룹 구하기
+
 	public PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
 		int pageGroupEnd = currentPageGroup * 10;
 		int total = selectCountTotal();
-		int pageGroupTotal = (int) Math.ceil(total / 10.0);
+		int pageGroupGroup = (int) Math.ceil(total / 10.0);
 
-		if (pageGroupEnd > pageGroupTotal) {
-			pageGroupEnd = pageGroupTotal;
+		if (pageGroupEnd > pageGroupGroup) {
+			pageGroupEnd = pageGroupGroup;
 		}
-		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupTotal);
+		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupGroup);
 	}
 
-	public void insertProduct(ProductDto dto) {
+	public int insertProduct(ProductDto dto) {
 
-		dao.insertProduct(dto);
+		return dao.insertProduct(dto);
 	}
 
 	public ProductDto selectProduct(int proNo) {

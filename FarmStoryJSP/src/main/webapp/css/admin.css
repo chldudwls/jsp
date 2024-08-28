@@ -200,15 +200,32 @@ section>article:nth-child(2)>table {
 	margin-bottom: 0;
 }
 
-tbody>tr {
-	height: 90px;
-}
 
 section>article:nth-child(2)>table img {
 	width: 60px;
 	height: 60px;
 }
-
+.paging {
+	overflow: hidden;
+	height: auto;
+}
+.paging > p {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+.paging > p > a[href]{
+	margin: 5px;
+}
+.paging > p > a.current{
+	font-weight: bolder;
+	text-decoration: underline;
+}
+.userList tbody>tr,
+.userList table td{
+	height: 43px;
+	box-sizing: border-box;
+}
 .userList section>article:nth-child(3)>h3 {
 	overflow: hidden;
 	height: 50px;
@@ -268,6 +285,9 @@ section>article:nth-child(2)>table img {
 	box-sizing: border-box;
 }
 
+.prodList tbody>tr {
+	height: 90px;
+}
 .prodList section>article:nth-child(3)>h3>a[href]:nth-child(1) {
 	display: block;
 	width: 50px;
@@ -275,7 +295,7 @@ section>article:nth-child(2)>table img {
 	height: 14px;
 }
 
-.prodList section>article:nth-child(3)>h3>a[href="./register.html"] {
+.prodList section>article:nth-child(3)>h3>a[href]:nth-child(2) {
 	display: flex;
 	float: right;
 	width: 74px;
@@ -307,7 +327,7 @@ section>article:nth-child(2)>table img {
 	box-sizing: border-box;
 }
 
-.prodReg form>h3>a[href="./list.html"] {
+.prodReg form>h3>a[href]:nth-child(1) {
 	display: flex;
 	width: 50px;
 	height: 30px;

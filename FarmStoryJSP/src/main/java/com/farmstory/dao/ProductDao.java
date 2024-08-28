@@ -14,49 +14,38 @@ import com.farmstory.util.SQL;
 public class ProductDao extends DBHelper {
 
 	private static ProductDao instance = new ProductDao();
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static ProductDao getInstance() {
 		return instance;
 	}
-
-	private ProductDao() {
-	}
+	private ProductDao() { }
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
 	public int insertProduct(ProductDto dto) {
-		int proNo = 0;
+		int result = 0;
 		try {
 			conn = getConnection();
-			conn.setAutoCommit(false);
 			psmt = conn.prepareStatement(SQL.INSERT_PRODUCT);
-			psmt.setInt(1, dto.getProNo());
-			psmt.setString(2, dto.getProName());
-			psmt.setString(3, dto.getProType());
-			psmt.setInt(4, dto.getProPrice());
-			psmt.setInt(5, dto.getProPoint());
-			psmt.setInt(6, dto.getProSale());
-			psmt.setInt(7, dto.getProDeliveryfee());
-			psmt.setInt(8, dto.getProStock());
-			psmt.setString(9, dto.getProImg1());
-			psmt.setString(10, dto.getProImg2());
-			psmt.setString(11, dto.getProImg3());
-			psmt.setString(12, dto.getProETC());
-			psmt.executeUpdate();
-			
-			
-			
-			rs = psmt.executeQuery(SQL.SELECT_MAX_NO);
-			if(rs.next()) {
-				proNo = rs.getInt(1);
-			}
-			conn.commit();
+			psmt.setString(1, dto.getProName());
+			psmt.setString(2, dto.getProType());
+			psmt.setInt(3, dto.getProPrice());
+			psmt.setInt(4, dto.getProPoint());
+			psmt.setInt(5, dto.getProSale());
+			psmt.setInt(6, dto.getProDeliveryfee());
+			psmt.setInt(7, dto.getProStock());
+			psmt.setString(8, dto.getProImg1());
+			psmt.setString(9, dto.getProImg2());
+			psmt.setString(10, dto.getProImg3());
+			psmt.setString(11, dto.getProETC());
+			result = psmt.executeUpdate();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
-		return proNo;
+		return result;
 	}
 
 	public int selectCountTotal() {
@@ -64,7 +53,7 @@ public class ProductDao extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTALs);
+			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTALS);
 
 			if (rs.next()) {
 				total = rs.getInt(1);
@@ -108,12 +97,13 @@ public class ProductDao extends DBHelper {
 		}
 		return dto;
 	}
+	
 
 	public List<ProductDto> selectProducts(int start) {
 		List<ProductDto> products = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTs);
+			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTS_LIMIT);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while (rs.next()) {

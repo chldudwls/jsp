@@ -32,7 +32,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="user" items="${users}">
+							<c:forEach var="user" items="${Users}">
 								<tr>
 									<td><input type="checkbox"></td>
 									<td>${user.getUserId()}</td>
@@ -53,10 +53,19 @@
 							</tbody>
 						</table>
 					</article>
-					<article>
+					<article class="paging">
 						<p>
-							<a href="#"> &lt; </a> <b>[1]</b> <a href="#">[2]</a> <a href="#">[3]</a>
-							<a href="#">[4]</a> <a href="#">[5]</a> <a href="#"> &gt; </a>
+							<c:if test="${PageGroup.start > 1}">
+								<a href="?page=${PageGroup.start-1}"> &lt; </a>
+							</c:if>
+							<c:forEach var="i" begin="${PageGroup.start}" end="${PageGroup.end}">
+							<c:if test="${i<=LastPage}">
+								<a href="?page=${i}" class="num ${i eq Current?'current':'off'}">[${i}]</a>
+							</c:if>
+							</c:forEach>
+							<c:if test="${PageGroup.end < LastPage}">
+								<a href="?page=${PageGroup.end+1}"> &gt; </a>
+							</c:if>
 
 						</p>
 					</article>
