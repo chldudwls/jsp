@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,30 +32,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:forEach var="product" items="${products}">
                             <tr>
-                                <td>1011</td>
-                                <td>사과500g</td>
-                                <td>과일</td>
-                                <td class="price">4,000</td>
-                                <td>100</td>
-                                <td>2023-01-01</td>
+                                <td>${product.prono}</td>
+                                <td>${product.proname}</td>
+                                <td>${product.protype}</td>
+                                <td class="price">${product.proprice}</td>
+                                <td>${product.prostock}</td>
+                                <td>${product.prorday}</td>
                             </tr>
-                            <tr>
-                                <td>1011</td>
-                                <td>사과500g</td>
-                                <td>과일</td>
-                                <td class="price">4,000</td>
-                                <td>100</td>
-                                <td>2023-01-01</td>
-                            </tr>
-                            <tr>
-                                <td>1011</td>
-                                <td>사과500g</td>
-                                <td>과일</td>
-                                <td class="price">4,000</td>
-                                <td>100</td>
-                                <td>2023-01-01</td>
-                            </tr>
+                        	</c:forEach>
                         </tbody>
                     </table>
                 </article>
@@ -77,36 +64,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:forEach var="order" items="${orders}">
                             <tr>
-                                <td>1011</td>
-                                <td>사과 500g</td>
-                                <td class="price">4,000</td>
-                                <td class="stock">2</td>
-                                <td class="price">3,000</td>
-                                <td class="price">8,000</td>
-                                <td>홍길동</td>
-                                <td>2023-01-01</td>
+                                <td>${order.orderno}</td>
+                                <td>${order.orderproname}</td>
+                                <td class="price">${order.orderproprice}</td>
+                                <td class="stock">${order.orderstock}</td>
+                                <td class="price">${order.orderprodeliveryfee}</td>
+                                <td class="price">${order.orderpayment}</td>
+                                <td>${order.orderusername}</td>
+                                <td>${order.orderdate}</td>
                             </tr>
-                            <tr>
-                                <td>1011</td>
-                                <td>사과 500g</td>
-                                <td class="price">4,000</td>
-                                <td class="stock">2</td>
-                                <td class="price">3,000</td>
-                                <td class="price">8,000</td>
-                                <td>홍길동</td>
-                                <td>2023-01-01</td>
-                            </tr>
-                            <tr>
-                                <td>1011</td>
-                                <td>사과 500g</td>
-                                <td class="price">4,000</td>
-                                <td class="stock">2</td>
-                                <td class="price">3,000</td>
-                                <td class="price">8,000</td>
-                                <td>홍길동</td>
-                                <td>2023-01-01</td>
-                            </tr>
+                        	</c:forEach>
                         </tbody>
                     </table>
                 </article>
@@ -128,33 +97,17 @@
                             </tr>
                         </thead>
                         <tbody>
+                        	<c:forEach var="user" items="${users}">
                             <tr>
-                                <td>a101</td>
-                                <td>김유신</td>
-                                <td>유신123</td>
-                                <td>010-1234-1001</td>
-                                <td>yusin123@naver.com</td>
-                                <td>2</td>
-                                <td>2023-01-01</td>
+                                <td>${user.getUserId()}</td>
+                                <td>${user.getUserName()}</td>
+                                <td>${user.getUserNick()}</td>
+                                <td>${user.getUserHp()}</td>
+                                <td>${user.getUserEmail()}</td>
+                                <td>${user.getUserGrade()}</td>
+                                <td>${user.getUserRegdate()}</td>
                             </tr>
-                            <tr>
-                                <td>a101</td>
-                                <td>김유신</td>
-                                <td>유신123</td>
-                                <td>010-1234-1001</td>
-                                <td>yusin123@naver.com</td>
-                                <td>2</td>
-                                <td>2023-01-01</td>
-                            </tr>
-                            <tr>
-                                <td>a101</td>
-                                <td>김유신</td>
-                                <td>유신123</td>
-                                <td>010-1234-1001</td>
-                                <td>yusin123@naver.com</td>
-                                <td>2</td>
-                                <td>2023-01-01</td>
-                            </tr>
+                        	</c:forEach>
                         </tbody>
                     </table>
                 

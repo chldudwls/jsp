@@ -15,7 +15,7 @@
 	                        <tr>
 	                            <td>${pageStartNum}</td>
 	                            <td><a href="/FarmStoryJSP/article/view.do?group=${group}&cate=${cate}&artNo=${article.artNo}">${article.artTitle}</a>&nbsp;[${article.artComment}]</td>
-	                            <td>${article.artWriter}</td>
+	                            <td>${article.nick}</td>
 	                            <td>${article.artRdate}</td>
 	                            <td>${article.artHit}</td>
 	                        </tr>
@@ -37,7 +37,10 @@
                     	<a href="/FarmStoryJSP/article/list.do?group=${group}&cate=${cate}&pg=${pageGroup.end+1}" class="next">다음</a>
                     </c:if>
                 </div>
-
-                <!-- 글쓰기 버튼 -->
-                <a href="/FarmStory/article/write.do" class="btnWrite">글쓰기</a>
+				
+				<c:if test="${((adminonly eq 'false') || (sessUser.userRole eq 'admin')) && not empty sessUser.userId}">
+				<!-- 글쓰기 버튼 -->
+                <a href="/FarmStoryJSP/article/write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
+				</c:if>
+                
             </section>

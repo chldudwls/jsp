@@ -26,6 +26,9 @@ public class CommentDto {
 	public void setComParent(int comParent) {
 		this.comParent = comParent;
 	}
+	public void setComParent(String comParent) {
+		this.comParent = Integer.parseInt(comParent);
+	}
 
 	public String getComContent() {
 		return comContent;

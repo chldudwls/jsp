@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,13 +7,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 <title>Farmstory</title>
+<script>
+const success = ${success};
+
+if(success==100){
+	alert('로그인에 실패했습니다. 다시 한번 아이디와 비밀번호를 확인 하시기 바랍니다.');
+}else if(success==200){
+	alert('성공적으로 로그아웃 되었습니다.');
+}else if(success==300){
+	alert('회원가입을 축하합니다. 새로 로그인 해주세요.');
+}else if(success==700){
+	alert('비밀번호가 변경되었습니다. 새로 로그인 해주세요.');
+}else if(success==800){
+	alert('일치하는 정보가 없습니다.');
+}
+//else if(success==102){
+	//alert('먼저 로그인을 하셔야 합니다.');
+//}
+</script>
 <style>
 main {
 	height: 400px;
 	width: 980px;
-	margin: 0 auto;
+	margin : 0 auto;
 	background-color: #white;
-	position: relative;
+
 }
 
 main>p {
@@ -75,6 +93,7 @@ main>p {
     }
     .login>div>a {
       float: right;
+	  margin-left : 7px;
     }
 </style>
 </head>
@@ -105,6 +124,8 @@ main>p {
         <p>
           아직 회원이 아니시면 회원으로 가입하세요.
         </p>
+        <a href="/FarmStoryJSP/user/findpass.do">비밀번호 찾기</a>
+        <a href="/FarmStoryJSP/user/findid.do">아이디 찾기</a>
         <a href="/FarmStoryJSP/user/terms.do">회원가입</a>
       </div>
     </section>

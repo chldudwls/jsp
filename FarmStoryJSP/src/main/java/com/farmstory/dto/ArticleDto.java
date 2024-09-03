@@ -96,4 +96,16 @@ public class ArticleDto {
 				+ ", 글 댓글 수 =" + artComment + ", 글 작성자=" + artWriter + ", 글 작성 아이피=" + artRegip + ", 글 작성 날짜 ="
 				+ artRdate + "]";
 	}
+	public List<FileDto> getArtFiles() {
+		return artFiles;
+	}
+	public void setArtFiles(List<FileDto> artFiles) {
+		this.artFiles = artFiles;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 }

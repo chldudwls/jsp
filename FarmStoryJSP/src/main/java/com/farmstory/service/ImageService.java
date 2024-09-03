@@ -9,7 +9,6 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
@@ -46,7 +45,7 @@ public enum ImageService {
 					logger.debug("sFileName : " + sFileName);
 					// 파일 저장
 					part.write(uploadPath + File.separator + sFileName);
-					files.add(sFileName);
+					files.add("/FarmStoryJSP/thumbUploads/"+sFileName);
 				}
 			}
 

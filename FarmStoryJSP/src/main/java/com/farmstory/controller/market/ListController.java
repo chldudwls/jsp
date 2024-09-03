@@ -47,14 +47,14 @@ public class ListController extends HttpServlet{
 		List<ProductDto> products = service.selectProducts(start);
 		int PageStartNo = total - (currentPage - 1) * 10;
 		for(ProductDto product : products) {
-			product.setStartNo(PageStartNo --);
+			product.setStartno(PageStartNo --);
 			
-			int originalPrice = (int) product.getProPrice(); // 원래 가격
-			int discountPercent = (int) product.getProSale(); // 할인 비율
+			int originalPrice = (int) product.getProprice(); // 원래 가격
+			int discountPercent = (int) product.getProsale(); // 할인 비율
 
 			// 할인된 가격 계산
 			int discountPrice = (int) (originalPrice * (1 - discountPercent / 100.0));
-	        product.setsalePrice(discountPrice);
+	        product.setSaleprice(discountPrice);
 		}
 		
 		
@@ -63,7 +63,7 @@ public class ListController extends HttpServlet{
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("pageGroup", pageGroup);
 		req.setAttribute("currentPage", currentPage);
-		
+		    
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/list.jsp");
 		dispatcher.forward(req, resp);

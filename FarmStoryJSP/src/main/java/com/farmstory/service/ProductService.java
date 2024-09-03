@@ -37,13 +37,13 @@ public enum ProductService {
 		return currentPage;
 	}
 
-	public int getProuctNO(String proNo) {
-		int getProuctNO = 1;
+	public int getProuctnO(String prono) {
+		int getProuctnO = 1;
 		
-		if (proNo != null) {
-			getProuctNO = Integer.parseInt(proNo);
+		if (prono != null) {
+			getProuctnO = Integer.parseInt(prono);
 		}
-		return getProuctNO;
+		return getProuctnO;
 	}
 
 	// 현재 페이지 그룹 구하기
@@ -66,8 +66,8 @@ public enum ProductService {
 		return dao.insertProduct(dto);
 	}
 
-	public ProductDto selectProduct(int proNo) {
-		return dao.selectProduct(proNo);
+	public ProductDto selectProduct(String prono) {
+		return dao.selectProduct(prono);
 	}
 
 	public int selectCountTotal() {
@@ -82,7 +82,7 @@ public enum ProductService {
 		dao.updateProduct(dto);
 	}
 
-	public void deleteProduct(int proNo) {
-		dao.deleteProduct(proNo);
+	public int deleteProduct(String prono) {
+		return dao.deleteProduct(prono);
 	}
 }

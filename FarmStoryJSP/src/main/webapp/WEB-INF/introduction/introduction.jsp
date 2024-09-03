@@ -168,8 +168,8 @@
                     <img src="../images/sub_aside_cate1_tit.png" alt="팜스토리 소개" class="intro">
                 <ul class="sideimage">
                     
-                    <li><a href="./introduction.html" class="greet"><img src="../images/sub_cate1_lnb1_ov.png" alt="2"></a></li>
-                    </li><a href="./direction.html" class="way"><img src="../images/sub_cate1_lnb2.png" alt="3"></a></li>
+                    <li><a href="/FarmStoryJSP/introduction/introduction.do" class="greet"><img src="../images/sub_cate1_lnb1_ov.png" alt="2"></a></li>
+                    <li><a href="/FarmStoryJSP/introduction/direction.do" class="way"><img src="../images/sub_cate1_lnb2.png" alt="3"></a></li>
                 </ul>
             </aside>
             <article>

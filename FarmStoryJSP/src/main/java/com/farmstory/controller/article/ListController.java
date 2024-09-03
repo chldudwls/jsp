@@ -23,6 +23,7 @@ public class ListController extends HttpServlet {
 	
 	private ArticleService service = ArticleService.INSTANCE;
 	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

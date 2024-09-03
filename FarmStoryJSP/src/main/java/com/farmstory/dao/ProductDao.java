@@ -27,17 +27,17 @@ public class ProductDao extends DBHelper {
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_PRODUCT);
-			psmt.setString(1, dto.getProName());
-			psmt.setString(2, dto.getProType());
-			psmt.setInt(3, dto.getProPrice());
-			psmt.setInt(4, dto.getProPoint());
-			psmt.setInt(5, dto.getProSale());
-			psmt.setInt(6, dto.getProDeliveryfee());
-			psmt.setInt(7, dto.getProStock());
-			psmt.setString(8, dto.getProImg1());
-			psmt.setString(9, dto.getProImg2());
-			psmt.setString(10, dto.getProImg3());
-			psmt.setString(11, dto.getProETC());
+			psmt.setString(1, dto.getProname());
+			psmt.setString(2, dto.getProtype());
+			psmt.setInt(3, dto.getProprice());
+			psmt.setInt(4, dto.getPropoint());
+			psmt.setInt(5, dto.getProsale());
+			psmt.setInt(6, dto.getProdeliveryfee());
+			psmt.setInt(7, dto.getProstock());
+			psmt.setString(8, dto.getProimg1());
+			psmt.setString(9, dto.getProimg2());
+			psmt.setString(10, dto.getProimg3());
+			psmt.setString(11, dto.getProetc());
 			result = psmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -66,29 +66,29 @@ public class ProductDao extends DBHelper {
 		return total;
 	}
 
-	public ProductDto selectProduct(int proNo) {
+	public ProductDto selectProduct(String prono) {
 		ProductDto dto = null;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_PRODUCT);
-			psmt.setInt(1, proNo);
+			psmt.setString(1, prono);
 
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new ProductDto();
-				dto.setProNo(rs.getInt(1));
-				dto.setProName(rs.getString(2));
-				dto.setProType(rs.getString(3));
-				dto.setProPrice(rs.getInt(4));
-				dto.setProPoint(rs.getInt(5));
-				dto.setProSale(rs.getInt(6));
-				dto.setProDeliveryfee(rs.getInt(7));
-				dto.setProStock(rs.getInt(8));
-				dto.setProImg1(rs.getString(9));
-				dto.setProImg2(rs.getString(10));
-				dto.setProImg3(rs.getString(11));
-				dto.setProETC(rs.getString(12));
-				dto.setProRdate(rs.getString(13));
+				dto.setProno(rs.getInt(1));
+				dto.setProname(rs.getString(2));
+				dto.setProtype(rs.getString(3));
+				dto.setProprice(rs.getInt(4));
+				dto.setPropoint(rs.getInt(5));
+				dto.setProsale(rs.getInt(6));
+				dto.setProdeliveryfee(rs.getInt(7));
+				dto.setProstock(rs.getInt(8));
+				dto.setProimg1(rs.getString(9));
+				dto.setProimg2(rs.getString(10));
+				dto.setProimg3(rs.getString(11));
+				dto.setProetc(rs.getString(12));
+				dto.setPrordate(rs.getString(13));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -108,19 +108,19 @@ public class ProductDao extends DBHelper {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ProductDto dto = new ProductDto();
-				dto.setProNo(rs.getInt(1));
-				dto.setProName(rs.getString(2));
-				dto.setProType(rs.getString(3));
-				dto.setProPrice(rs.getInt(4));
-				dto.setProPoint(rs.getInt(5));
-				dto.setProSale(rs.getInt(6));
-				dto.setProDeliveryfee(rs.getInt(7));
-				dto.setProStock(rs.getInt(8));
-				dto.setProImg1(rs.getString(9));
-				dto.setProImg2(rs.getString(10));
-				dto.setProImg3(rs.getString(11));
-				dto.setProETC(rs.getString(12));
-				dto.setProRdate(rs.getString(13));
+				dto.setProno(rs.getInt(1));
+				dto.setProname(rs.getString(2));
+				dto.setProtype(rs.getString(3));
+				dto.setProprice(rs.getInt(4));
+				dto.setPropoint(rs.getInt(5));
+				dto.setProsale(rs.getInt(6));
+				dto.setProdeliveryfee(rs.getInt(7));
+				dto.setProstock(rs.getInt(8));
+				dto.setProimg1(rs.getString(9));
+				dto.setProimg2(rs.getString(10));
+				dto.setProimg3(rs.getString(11));
+				dto.setProetc(rs.getString(12));
+				dto.setPrordate(rs.getString(13));
 				products.add(dto);
 			}
 		} catch (Exception e) {
@@ -135,7 +135,18 @@ public class ProductDao extends DBHelper {
 
 	}
 
-	public void deleteProduct(int proNo) {
-
+	public int deleteProduct(String prono) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_PRODUCT);
+			psmt.setString(1, prono);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} finally {
+			closeAll();
+		}
+		return result;
 	}
 }

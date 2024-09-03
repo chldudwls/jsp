@@ -25,6 +25,19 @@ ul, ol {
 	height: 100%;
 }
 
+table {
+	border-collapse: collapse; /* 테두리 간격을 제거합니다. */
+}
+
+td {
+	padding: 0; /* 셀의 내부 여백을 없애거나 조절합니다. */
+	margin: 0; /* 셀의 외부 여백을 제거합니다. */
+}
+
+tr {
+	margin: 0; /* 행의 외부 여백을 제거합니다. */
+}
+
 main .Farmstory {
 	width: 100%;
 	height: auto;
@@ -205,6 +218,17 @@ input, textarea {
 	padding: 10px 0 10px 0;
 }
 
+.container {
+	flex: 1;
+	margin-right: 10px; /* 간격 추가 */
+	box-sizing: border-box;
+}
+
+/* 마지막 컨테이너의 오른쪽 여백 제거 */
+.container:last-child {
+	margin-right: 0;
+}
+
 .content {
 	display: flex;
 	align-items: flex-start;
@@ -213,7 +237,7 @@ input, textarea {
 .content img {
 	width: 105px;
 	height: 96px;
-	margin-right: 15px;
+	margin-right: 8px;
 }
 
 .content-customer>.customer-box {
@@ -282,16 +306,14 @@ input, textarea {
 }
 
 .dataMent {
-	display: flex;
-	flex-direction: column;
-	/* 항목을 열 방향으로 정렬 */
+	display: flex; /* 플렉스 레이아웃을 사용 */
+	flex-direction: column; /* 세로로 정렬 */
+	line-height: 1.2; /* 텍스트 줄 높이 설정 */
+	margin-bottom: 10px; /* 하단 여백 설정 */
 }
 
-.dataMant {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 10px;
-	/* 각 항목 간격 조정 */
+.datament td {
+	height: 16px !important;
 }
 
 .ment>table {
@@ -302,10 +324,65 @@ input, textarea {
 }
 
 .data {
-	margin-left: auto;
-	/* 오른쪽으로 밀어내기 */
-	right: 10px;
-	/* 필요에 따라 조정 가능 */
+	position: sticky;
+	right: 0;
+	background-color: #fff;
+	z-index: 1;
+	text-align: right; /* 오른쪽 정렬 */
+}
+
+.datament a {
+	display: inline-block;
+	width: 215px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
+}
+
+.intable {
+	display: flex;
+	flex-direction: column; /* 행 방향으로 정렬 */
+	width: 100%;
+}
+
+.intable tr {
+	display: flex;
+	justify-content: space-between; /* 두 열을 양쪽으로 배치 */
+	align-items: center; /* 세로 중앙 정렬 */
+	width: 100%;
+}
+
+/* 각각 열 스타일 */
+.table-cell {
+	width: 140px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.table-date {
+	width: auto;
+	text-align: right; /* 오른쪽 정렬 */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+a.link {
+	text-decoration: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+	height: 18px;
+}
+
+a.link:hover {
+	text-decoration: underline;
+}
+.product>img{
+	height: 120px;
+	width: 120px;
 }
 </style>
 </head>
@@ -329,16 +406,17 @@ input, textarea {
 			</div>
 			<div>
 				<c:forEach var="product" items="${products}">
-					<a href="/FarmStoryJSP/market/view.do?no${product.proNo}">
-						<article>
-							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
-							<h1>${product.proType}</h1>
-							<p>${product.proName}</p>
+					<a href="/FarmStoryJSP/market/view.do?no=${product.prono}">
+					
+						<article class="product">
+							<img src="${product.proimg1}" alt="${product.proname}">
+							<h1>${product.protype}</h1>
+							<p>${product.proname}</p>
 							<div class="pricediscount">
-								<span class="price">${product.proPrice}</span> <span
-									class="discount">${product.proSale}</span>
+								<span class="price">${product.proprice}원</span>
+								<span class="discount">${product.prosale}%</span>
 							</div>
-							<h3>${product.salePrice}</h3>
+							<h3>${product.saleprice}원</h3>
 						</article>
 					</a>
 				</c:forEach>
@@ -364,83 +442,56 @@ input, textarea {
 					<img class="conimg" src="/FarmStoryJSP/images/main_latest1_tit.png">
 					<div class="content">
 						<img src="/FarmStoryJSP/images/main_latest1_img.jpg" alt="텃밭가꾸기">
-						<table>
+						<table class="intable">
 							<tbody>
-								<c:forEach var="article" items="${articles}">
-									<c:if test="${article.artCate == '텃밭가꾸기'}">
-										<tr>
-											<td><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow" class="link">>${article.artTitle}</a></td>
-											<td>20-12-22</td>
-										</tr>
-									</c:if>
+								<c:forEach var="article" items="${growArticles}">
+									<tr>
+										<td class="table-cell"><a
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=grow&artNo=${article.artNo}"
+											class="link">>${article.artTitle}</a></td>
+										<td class="table-date">${article.artRdate}</td>
+									</tr>
 								</c:forEach>
-								<tr>
-									<td><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<div class="container">
-					<img class="conimg" src="/FarmStoryJSP/images/main_latest1_tit.png">
+					<img class="conimg" src="/FarmStoryJSP/images/main_latest2_tit.png">
 
 					<div class="content">
-						<img src="/FarmStoryJSP/images/main_latest2_img.jpg" alt="텃밭가꾸기">
+						<img src="/FarmStoryJSP/images/main_latest2_img.jpg" alt="귀농학교">
 						<table>
-							<tbody>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-							</tbody>
-						</table>
+							<table class="intable">
+								<c:forEach var="article" items="${SchoolArticles}">
+									<tr>
+										<td class="table-cell"><a
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=school&artNo=${article.artNo}"
+											class="link">>${article.artTitle}</a></td>
+										<td class="table-date">${article.artRdate}</td>
+									</tr>
+								</c:forEach>
+
+								</tbody>
+							</table>
 					</div>
 				</div>
 				<div class="container">
-					<img class="conimg" src="/FarmStoryJSP/images/main_latest1_tit.png">
+					<img class="conimg" src="/FarmStoryJSP/images/main_latest3_tit.png">
 					<div class="content">
-						<img src="/FarmStoryJSP/images/main_latest3_img.jpg" alt="텃밭가꾸기">
+						<img src="/FarmStoryJSP/images/main_latest3_img.jpg" alt="농작물이야기">
 						<table>
-							<tbody>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
-									<td>20-12-22</td>
-								</tr>
-							</tbody>
-						</table>
+							<table class="intable">
+								<c:forEach var="article" items="${storiArticles}">
+									<tr>
+										<td class="table-cell"><a
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=story&artNo=${article.artNo}"
+											class="link">>${article.artTitle}</a></td>
+										<td class="table-date">${article.artRdate}</td>
+									</tr>
+								</c:forEach>
+								</tbody>
+							</table>
 					</div>
 				</div>
 			</article>
@@ -468,10 +519,14 @@ input, textarea {
 							</td>
 						</tr>
 						<tr>
-							<td colspan="3"><img
-								src="/FarmStoryJSP/images/main_sub2_cs_bt1.png"> <img
-								src="/FarmStoryJSP/images/main_sub2_cs_bt2.png"> <img
-								src="/FarmStoryJSP/images/main_sub2_cs_bt3.png"></td>
+							<td colspan="3"><a
+								href="/FarmStoryJSP/article/list.do?group=community&cate=faq">
+									<img src="/FarmStoryJSP/images/main_sub2_cs_bt1.png">
+							</a> <a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
+									<img src="/FarmStoryJSP/images/main_sub2_cs_bt2.png">
+							</a> <a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
+									<img src="/FarmStoryJSP/images/main_sub2_cs_bt3.png">
+							</a></td>
 						</tr>
 					</table>
 
@@ -504,32 +559,12 @@ input, textarea {
 						</div>
 					</div>
 					<table>
-						<tr class="datament">
-							<td><span>· </span> <a href="#">안녕하세요 홈페이지 오픈 기념 이벤트 ...</a>
-							</td>
-							<td class="data">20-12-22</td>
-						</tr>
-						<tr class="datament">
-							<td><span>· </span> <a href="#">안녕하세요 홈페이지 오픈 기념 이벤트 ...</a>
-							</td>
-							<td class="data">20-12-22</td>
-						</tr>
-						<tr class="datament">
-							<td><span>· </span> <a href="#">안녕하세요 홈페이지 오픈 기념 이벤트 ...</a>
-							</td>
-							<td class="data">20-12-22</td>
-						</tr>
-						<tr class="datament">
-							<td><span>· </span> <a href="#">안녕하세요 홈페이지 오픈 기념 이벤트 ...</a>
-							</td>
-							<td class="data">20-12-22</td>
-						</tr>
-						<tr class="datament">
-							<td><span>· </span> <a href="#">안녕하세요 홈페이지 오픈 기념 이벤트 ...</a>
-							</td>
-							<td class="data">20-12-22</td>
-						</tr>
-
+						<c:forEach var="article" items="${noticeArticles}">
+							<tr class="datament">
+								<td><span>· </span> <a href="/FarmStoryJSP/article/view.do?group=community&cate=notice&artNo=${article.artNo}">${article.artTitle}</a></td>
+								<td class="data">${article.artRdate}</td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</article>

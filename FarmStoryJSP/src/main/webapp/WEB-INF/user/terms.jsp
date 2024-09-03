@@ -1,24 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script>
 
-window.onload = function(){
-	const btnNext = document.getElementsByClassName('btnNext')[0];
-
-	
-		btnNext.addEventListener('click', function(e){
-			
-			const chk1 = document.getElementById('chk1').checked;
-			const chk2 = document.getElementById('chk2').checked;
-			
-			if(!(chk1 && chk2)){
-				alert('모두 동의하셔야 합니다.');
-				e.preventDefault();
-			};	
-		
-	});
-}
-
-</script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,25 +7,46 @@ window.onload = function(){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<title>Farmstory</title>
-	<style>
-		main {
-			height: 600px;
-			width: auto;
-			
-			background-color: #white;
-			position: relative;
-		}
+	<script>
+
+	window.onload = function(){
+		const btnNext = document.getElementsByClassName('btnNext')[0];
+	
 		
-		main>p {
-			position: absolute;
-			float: left;
-			left: 50%;
-			margin-left: -69px;
-			top: 50%;
-		}
+			btnNext.addEventListener('click', function(e){
+				
+				const chk1 = document.getElementById('chk1').checked;
+				const chk2 = document.getElementById('chk2').checked;
+				
+				if(!(chk1 && chk2)){
+					alert('모두 동의하셔야 합니다.');
+					e.preventDefault();
+				};	
+			
+		});
+	}
+	
+	</script>
+	<style>
+main {
+	height: auto;
+	width: 980px;
+	margin: 0 auto;
+	background-color: #white;
+	position: relative;
+}
+
+main>p {
+	position: absolute;
+	float: left;
+	left: 50%;
+	margin-left: -69px;
+	top: 50%;
+}
 	.terms {
+	  position: relative;
       width: 600px;
-      height: auto;
+      height: 600px;
       margin: 0 auto;
       box-sizing: border-box;
     }

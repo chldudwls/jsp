@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -102,7 +103,18 @@
           <img src="../images/sub_nav_tit_cate4_tit1.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 이벤트 > <strong>이벤트</strong></p>
         </nav>
-        <%@ include file="/css/_article.jsp"%>
+        <c:set var="adminonly" value="true"/>
+        <c:choose>
+        	<c:when test="${type eq 'list'}">
+        		<%@ include file="/css/_article.jsp"%>
+        	</c:when>
+        	<c:when test="${type eq 'view'}">
+        		<%@ include file="/css/_article_view.jsp"%>
+        	</c:when>
+        	<c:when test="${type eq 'write'}">
+        		<%@ include file="/css/_article_write.jsp"%>
+        	</c:when>
+        </c:choose>
       </article>
     </section>
   </main>

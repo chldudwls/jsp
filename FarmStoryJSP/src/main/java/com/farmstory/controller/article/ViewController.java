@@ -29,7 +29,7 @@ public class ViewController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		String type = "view";
 		String group = req.getParameter("group");
 		String cate = req.getParameter("cate");
@@ -38,6 +38,9 @@ public class ViewController extends HttpServlet {
 		
 		// 데이터 조회
 		ArticleDto articleDto = service.selectArticle(artNo);
+		
+		//조회수 증가
+		service.updateArticleHit(artNo);
 		
 		// 댓글 조회
 		List<CommentDto> comments = commentService.selectComments(artNo);

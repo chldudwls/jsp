@@ -1,6 +1,101 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmstory</title>
+  	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
+  <style>
+    main {
+      height : 600px;
+      width: auto;
+      background-color: #white;
+      position: relative;
+    }
+    main > p{
+      position: absolute;
+      float: left;
+      left: 50%;
+      margin-left: -69px;
+      top: 50%;
+    }
+    
+      .register {
+      position: relative;
+      width: 600px;
+      height: 980px;
+      top : 50px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .btnSubmit {
+      cursor: pointer;
+      border: 1px solid white;
+    }
+    .register table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      border-top: 2px solid #111;
+      margin-bottom: 10px;
+    }
+    .register table caption {
+      text-align: left;
+      padding: 10px 0;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+    .register table tr>td {
+      padding: 6px 12px;
+      border: 1px solid #E9E9E9;
+      box-sizing: border-box;
+    }
+    .register table tr>td:nth-child(1) {
+      width: 105px;
+      background: #F5F8F9;
+    }
+    .register table tr .nickInfo {
+      margin-bottom: 6px;
+    }
+    .register table input {
+      width: 162px;
+      height: 22px;
+      border: 1px solid #E4EAEC;
+      background: #F7F7F7;
+      text-indent: 6px;
+    }
+    .register table input[name=addr1] {
+      display: block;
+      width: 360px;
+      margin: 4px 0;
+    }
+    .register table input[name=addr2] {
+      display: block;
+      width: 360px;
+    }
+    .register table button {
+      border: none;
+      vertical-align: bottom;
+    }
+    .register>form>div {
+      float: right;
+    }
+    .register>form .auth {
+      display: none;
+      margin-top: 4px;
+    }
+    #btns {
+    	margin-top : 20px;
+    }
+    .btnCancel {
+    	margin-right : 20px;	
+    }
+  </style>
+  <script>
 function postcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -353,100 +448,6 @@ window.onload = function(){
 
 } //onload 끝
 </script>
-
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Farmstory</title>
-  	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
-  <style>
-    main {
-      height : 600px;
-      width: auto;
-      background-color: #white;
-      position: relative;
-    }
-    main > p{
-      position: absolute;
-      float: left;
-      left: 50%;
-      margin-left: -69px;
-      top: 50%;
-    }
-    
-      .register {
-      position: relative;
-      width: 600px;
-      height: 980px;
-      top : 50px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .btnSubmit {
-      cursor: pointer;
-      border: 1px solid white;
-    }
-    .register table {
-      width: 100%;
-      border-collapse: collapse;
-      border-spacing: 0;
-      border-top: 2px solid #111;
-      margin-bottom: 10px;
-    }
-    .register table caption {
-      text-align: left;
-      padding: 10px 0;
-      font-weight: bold;
-      box-sizing: border-box;
-    }
-    .register table tr>td {
-      padding: 6px 12px;
-      border: 1px solid #E9E9E9;
-      box-sizing: border-box;
-    }
-    .register table tr>td:nth-child(1) {
-      width: 105px;
-      background: #F5F8F9;
-    }
-    .register table tr .nickInfo {
-      margin-bottom: 6px;
-    }
-    .register table input {
-      width: 162px;
-      height: 22px;
-      border: 1px solid #E4EAEC;
-      background: #F7F7F7;
-      text-indent: 6px;
-    }
-    .register table input[name=addr1] {
-      display: block;
-      width: 360px;
-      margin: 4px 0;
-    }
-    .register table input[name=addr2] {
-      display: block;
-      width: 360px;
-    }
-    .register table button {
-      border: none;
-      vertical-align: bottom;
-    }
-    .register>form>div {
-      float: right;
-    }
-    .register>form .auth {
-      display: none;
-      margin-top: 4px;
-    }
-    #btns {
-    	margin-top : 20px;
-    }
-    .btnCancel {
-    	margin-right : 20px;	
-    }
-  </style>
 </head>
 <body>
 <%@ include file="/css/_header.jsp"%>

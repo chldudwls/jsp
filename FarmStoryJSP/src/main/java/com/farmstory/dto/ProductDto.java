@@ -1,123 +1,166 @@
 package com.farmstory.dto;
 
 public class ProductDto {
-	private int proNo;
-	private String proName;
-	private String proType;
-	private int proPrice;
-	private int proPoint;
-	private int proSale;
-	private int proDeliveryfee;
-	private int proStock;
-	private String proImg1;
-	private String proImg2;
-	private String proImg3;
-	private String proETC;
-	private String proRdate;
-	private int startNo;
-	private int salePrice;
+	private int prono;
+	private String proname;
+	private String protype;
+	private int proprice;
+	private int propoint;
+	private int prosale;
+	private int prodeliveryfee;
+	private int prostock;
+	private String proimg1;
+	private String proimg2;
+	private String proimg3;
+	private String proetc;
+	private String prordate;
 	
+	private String prorday;
+	private int startno;
+	private int saleprice;
+	private int cartstock;
+	
+	
+	
+	public int getCartstock() {
+		return cartstock;
+	}
+	public void setCartstock(int cartstock) {
+		this.cartstock = cartstock;
+	}
+	public void setCartstock(String cartstock) {
+		if(cartstock==null) this.cartstock = 0;
+		else this.cartstock = Integer.parseInt(cartstock);
+	}
+
 	
 	@Override
 	public String toString() {
-		return "ProductDto [proNo=" + proNo + ", proName=" + proName + ", proType=" + proType + ", proPrice=" + proPrice
-				+ ", proPoint=" + proPoint + ", proSale=" + proSale + ", proDeliveryfee=" + proDeliveryfee
-				+ ", proStock=" + proStock + ", proImg1=" + proImg1 + ", proImg2=" + proImg2 + ", proImg3=" + proImg3
-				+ ", proETC=" + proETC + ", proRdate=" + proRdate + "]";
+		return "ProductDto [prono=" + prono + ", proname=" + proname + ", protype=" + protype + ", proprice=" + proprice
+				+ ", propoint=" + propoint + ", prosale=" + prosale + ", prodeliveryfee=" + prodeliveryfee
+				+ ", prostock=" + prostock + ", proImg1=" + proimg1 + ", proImg2=" + proimg2 + ", proImg3=" + proimg3
+				+ ", proETC=" + proetc + ", proRdate=" + prordate + ", startNo=" + startno + ", salePrice=" + saleprice
+				+ "]";
 	}
-	  public int getsalePrice() {
-	        return salePrice;
-	    }
 
-	    public void setsalePrice(int salePrice) {
-	        this.salePrice = salePrice;
-	    }
-	public int getStartNo() {
-		return startNo;
+	public int getStartno() {
+		return startno;
 	}
-	public void setStartNo(int startNo) {
-		this.startNo = startNo;
+
+	public void setStartno(int startNo) {
+		this.startno = startNo;
 	}
-	public void setStartNo(String startNo) {
-		this.startNo = Integer.parseInt(startNo);
+
+	public int getSaleprice() {
+		return saleprice;
 	}
-	public int getProNo() {
-		return proNo;
+
+	public void setSaleprice(int salePrice) {
+		this.saleprice = salePrice;
 	}
-	public void setProNo(int proNo) {
-		this.proNo = proNo;
+
+	public int getProno() {
+		return prono;
 	}
-	public String getProName() {
-		return proName;
+	public void setProno(int prono) {
+		this.prono = prono;
 	}
-	public void setProName(String proName) {
-		this.proName = proName;
+	public String getProname() {
+		return proname;
 	}
-	public String getProType() {
-		return proType;
+	public void setProname(String proname) {
+		this.proname = proname;
 	}
-	public void setProType(String proType) {
-		this.proType = proType;
+	public String getProtype() {
+		return protype;
 	}
-	public int getProPrice() {
-		return proPrice;
+	public void setProtype(String protype) {
+		this.protype = protype;
 	}
-	public void setProPrice(int proPrice) {
-		this.proPrice = proPrice;
+	public int getProprice() {
+		return proprice;
 	}
-	public int getProPoint() {
-		return proPoint;
+	public void setProprice(int proprice) {
+		this.proprice = proprice;
 	}
-	public void setProPoint(int proPoint) {
-		this.proPoint = proPoint;
+	public void setProprice(String proprice) {
+		if(proprice!=null) this.proprice = Integer.parseInt(proprice);
+		else this.proprice = 0;
 	}
-	public int getProSale() {
-		return proSale;
+	public int getPropoint() {
+		return propoint;
 	}
-	public void setProSale(int proSale) {
-		this.proSale = proSale;
+	public void setPropoint(int propoint) {
+		this.propoint = propoint;
 	}
-	public int getProDeliveryfee() {
-		return proDeliveryfee;
+	public void setPropoint(String propoint) {
+		if(propoint!=null) this.propoint = Integer.parseInt(propoint);
+		else this.propoint = 0;
 	}
-	public void setProDeliveryfee(int proDeliveryfee) {
-		this.proDeliveryfee = proDeliveryfee;
+	public int getProsale() {
+		return prosale;
 	}
-	public int getProStock() {
-		return proStock;
+	public void setProsale(int prosale) {
+		this.prosale = prosale;
 	}
-	public void setProStock(int proStock) {
-		this.proStock = proStock;
+	public void setProsale(String prosale) {
+		if(prosale!=null) this.prosale = Integer.parseInt(prosale);
+		else this.prosale = 0;
 	}
-	public String getProImg1() {
-		return proImg1;
+	public int getProdeliveryfee() {
+		return prodeliveryfee;
 	}
-	public void setProImg1(String proImg1) {
-		this.proImg1 = proImg1;
+	public void setProdeliveryfee(int prodeliveryfee) {
+		this.prodeliveryfee = prodeliveryfee;
 	}
-	public String getProImg2() {
-		return proImg2;
+	public void setProdeliveryfee(String prodeliveryfee) {
+		if(prodeliveryfee!=null) this.prodeliveryfee = Integer.parseInt(prodeliveryfee);
+		else this.prodeliveryfee = 0;
 	}
-	public void setProImg2(String proImg2) {
-		this.proImg2 = proImg2;
+	public int getProstock() {
+		return prostock;
 	}
-	public String getProImg3() {
-		return proImg3;
+	public void setProstock(int stock) {
+		this.prostock = stock;
 	}
-	public void setProImg3(String proImg3) {
-		this.proImg3 = proImg3;
+	public void setProstock(String prostock) {
+		if(prostock!=null) this.prostock = Integer.parseInt(prostock);
+		else this.prostock = 0;
 	}
-	public String getProETC() {
-		return proETC;
+	public String getProimg1() {
+		return proimg1;
 	}
-	public void setProETC(String proETC) {
-		this.proETC = proETC;
+	public void setProimg1(String proImg1) {
+		this.proimg1 = proImg1;
 	}
-	public String getProRdate() {
-		return proRdate;
+	public String getProimg2() {
+		return proimg2;
 	}
-	public void setProRdate(String proRdate) {
-		this.proRdate = proRdate;
+	public void setProimg2(String proImg2) {
+		this.proimg2 = proImg2;
+	}
+	public String getProimg3() {
+		return proimg3;
+	}
+	public void setProimg3(String proImg3) {
+		this.proimg3 = proImg3;
+	}
+	public String getProetc() {
+		return proetc;
+	}
+	public void setProetc(String proETC) {
+		this.proetc = proETC;
+	}
+	public String getPrordate() {
+		return prordate;
+	}
+	public void setPrordate(String proRdate) {
+		this.prordate = proRdate;
+		prorday = proRdate.substring(0, 10);
+	}
+
+	public String getProrday() {
+		return prorday;
 	}
 
 	

@@ -68,7 +68,9 @@ public class SQL{
 	//제품 총 수
 	public static final String SELECT_COUNT_TOTALS="SELECT COUNT(*) FROM `product`";
 	//가지고 오는 제품의 수 10개 제한
-	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product LIMIT ?, 10";
+	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product ORDER BY `prono` DESC LIMIT ?, 10";
+	
+	public static final String SELECT_MAX_NO_ARTICLE = "select MAX(`artNo`) from `article`";
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
 													+ "`comParent`=?,"
@@ -97,14 +99,14 @@ public class SQL{
 												+ "userNick=?,"
 												+ "userEmail=?,"
 												+ "userHP=?,"
-												+ "UserRole=?,"
-												+ "userGrade=?,"
-												+ "UserZip=?"
+												+ "UserZip=?,"
 												+ "userAddr1=?,"
 												+ "UserAddr2=?,"
-												+ "UserRegip=?,"
-												+ "userRegdate=?";
-	public static final String SELECT_USER 	= "SELECT * FROM `User` `UserId`=? and `userPass`=SHA2(?,256)";
+												+ "UserRegip=?";
+	public static final String SELECT_USER 	= "SELECT u.*, COUNT(DISTINCT c.cartProNo) FROM `User` u "
+												+ "left JOIN `cart` c ON u.UserId=c.CartUid "
+												+ " where `UserId`=? and `userPass`=SHA2(?,256)";
+	public static final String SELECT_USER_WITHOUTPASS = "SELECT * FROM `User` where `UserId`=?";
 	public static final String SELECT_USERS = "SELECT * FROM `User`";
 	public static final String UPDATE_USERS = "UPDATE `User` set "
 												+ "userPass=SHA2(?, 256),"
@@ -112,9 +114,7 @@ public class SQL{
 												+ "userNick=?,"
 												+ "userEmail=?,"
 												+ "userHP=?,"
-												+ "UserRole=?,"
-												+ "userGrade=?,"
-												+ "UserZip=?"
+												+ "UserZip=?,"
 												+ "userAddr1=?,"
 												+ "UserAddr2=?"
 												//+ "UserRegip=?"
@@ -142,19 +142,28 @@ public class SQL{
 	
 	//ORDER
 	
-	public static final String INSERT_ORDER ="INSERT INTO `Order` set "
-												+ "`oderUid`=?,"
-												+ "`oderprodNO`=?,"
-												+ "`oderstock`=?,"
-												+ "`oderRdate`=NOW()";
-	// 특정 사용자의 주문내역을 조회
-	public static final String SELECT_ORDERS = "SELECT o.orderNo, o.orderprodNO, o.orderstock, o.orderRdate, " 
-												+"p.proimg1, p.proname, p.prosale, p.propoint, p.proprice, p.prodeliveryfee" 
-												+"FROM `order` AS o " 
-												+"JOIN `product` AS p ON o.orderprodNO = p.prono " 
-												+"JOIN `user` AS u ON o.orderUid = u.userUID " 
-												+"WHERE u.userUID = ?";  
-
+		public static final String INSERT_ORDER ="INSERT INTO `Order` set "
+													+ "`orderUid`=?,"
+													+ "`orderproNO`=?,"
+													+ "`orderstock`=?,"
+													+ "`orderRdate`=NOW()";
+		// 특정 사용자의 주문내역을 조회
+		public static final String SELECT_ORDERS = "SELECT o.orderNo, o.orderprodNO, o.orderstock, o.orderRdate, " 
+													+"p.proimg1, p.proname, p.prosale, p.propoint, p.proprice, p.prodeliveryfee" 
+													+"FROM `order` AS o " 
+													+"JOIN `product` AS p ON o.orderprodNO = p.prono " 
+													+"JOIN `user` AS u ON o.orderUid = u.userUID " 
+													+"WHERE u.userUID = ?";  
+		// 장바구니
+		public static final String  SELECT_USER_CART = "SELECT p.proimg1, p.protype, p.proName, "
+													+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
+													+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? "
+													+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
+		public static final String  SELECT_USER_CART_FOR_PAY = "SELECT p.proimg1, p.protype, p.proName, "
+													+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
+													+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? AND c.cartProNo=? "
+													+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
+	
 	public static final String UPDATE_ORDER = "UPDATE `order` SET"
 												+" orderstock = ?, "
 												+" orderRdate = NOW() " 
@@ -185,78 +194,43 @@ public class SQL{
 												+ "`cartUid`=?,"
 												+ "`cartProNo`=?,"
 												+ "`cartstock`=?";
-	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
-}
+	public static final String DELETE_CART  = "DELETE FROM `cart` where cartproNo=? and cartUid=?";
+	//사용자 번호와 같을경우 
+	public static final String GET_CARTS_PRODUCT = "SELECT "
+													+ "p.protype,"
+													+ "p.proname,"
+													+ "c.cartstock,"
+													+ "p.prosale,"
+													+ "p.propoint,"
+													+ "p.proprice "
+													+ "FROM Cart c "
+													+ "JOIN Product p ON c.cartProNo = p.prono "
+													+ "WHERE c.cartUid = ?";
+													
+	public static final String SELECT_FIND_ID = "select `userid`,`username`,`userEmail`,`userRegdate` from `user` where `username`=? and `userEmail`=?";
 
-/*package com.jboard.util;
 
-public class SQL {
-	
-	
-	public static final String SELECT_TERMS = "select * from terms";
-	
-	//user
-	public static final String SELECT_COUNT_USER = "SELECT COUNT(*) FROM `user` ";
-	public static final String WHERE_UID  = "WHERE `uid`=?";
-	public static final String WHERE_NICK = "WHERE `nick`=?";
-	public static final String WHERE_EMAIL = "WHERE `email`=?";
-	public static final String WHERE_HP = "WHERE `hp`=?";
-	
-	public static final String SELECT_USER = "select * from `user` where `uid`=? and `pass`=SHA2(?,256)";
-	public static final String INSERT_USER = "insert into user set "
-											+ "`uid`=?,"
-											+ "`pass`=SHA2(?, 256),"
-											+ "`name`=?,"
-											+ "`nick`=?,"
-											+ "`email`=?,"
-											+ "`hp`=?,"
-											+ "`zip`=?,"
-											+ "`addr1`=?,"
-											+ "`addr2`=?,"
-											+ "`regip`=?,"
-											+ "`regDate`=NOW()";
-	
-	//article
-	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `article`";
-	public static final String SELECT_ARTICLE ="SELECT * FROM `article` AS a "
-												+ "left JOIN `file` AS b ON a.`no` = b.`ano` "
-												+ "where `no`=?";
-	
-	public static final String SELECT_ARTICLES = "SELECT a.*, u.nick FROM `article` AS a "
-												+ "JOIN	`user` AS u ON a.writer = u.uid "
-												+ "ORDER BY `no` DESC "
-												+ "LIMIT ?, 10";
-	public static final String SELECT_MAX_NO = "select MAX(`no`) from `article`";
-	public static final String INSERT_ARTICLE = "insert into article set "
-											+ "`title`=?,"
-											+ "`content`=?,"
-											+ "`file`=?,"											
-											+ "`writer`=?,"
-											+ "`regip`=?,"
-											+ "`rdate`=NOW()";
-	
-	public static final String UPDATE_HIT_COUNT = "update article set `hit` = `hit` + 1 where `no`=?";
-	//comment
-	public static final String SELECT_COMMENT = "SELECT * FROM `comment` where `no`= ?";
-	public static final String SELECT_COMMENTS = "SELECT a.*, b.nick fROM `comment` AS a "
-													+ "JOIN `user` AS b ON a.writer = b.uid "
-													+ "WHERE `parent` = ?;";
-	public static final String INSERT_COMMENT = "INSERT into comment set "
-											+ "`parent`=?, "
-											+ "`content`=?, "
-											+ "`writer`=?, "
-											+ "`regip`=?, "
-											+ "`rdate`=now() ";
-	public static final String UPDATE_COMMENT = "UPDATE `comment` set `content`=? where `no` = ?";
-	public static final String DELETE_COMMENT = "DELETE FROM `comment` where `no`=?";
-	//file
-	public static final String DELETE_FILE = "DELETE FROM `file` where `ano`=?";
-	public static final String SELECT_FILE = "SELECT * FROM `file` where `fno`=?";
-	public static final String INSERT_FILE = "insert into file set "
-											+ "`ano`=?,"
-											+ "`oName` = ?,"
-											+ "`sName` = ?,"
-											+ "`rdate` = now()";
-	public static final String UPDATE_FILE_DOWNLOAD_COUNT = "update file set `download` = `download` + 1 where `fno`=?";
+	//비밀번호찾기
+	public static final String SELECT_FIND_PASS = "select * from `user` where `userId`=? and `userEmail`=?";
+
+	// 총 주문 수 
+	public static final String SELECT_ORDERS_COUNT = "SELECT COUNT(*) FROM `order`";
+	// 관리자 주문 페이지 불러오기
+	public static final String SELECT_ORDERS_PAGED = "SELECT "
+													+ "	o.`orderNo`, "
+													+ "	p.`proName`, "
+													+ "	p.`proprice`, "
+													+ "	o.`orderstock`, "
+													+ "	p.`prodeliveryfee`, "
+													+ "	p.`proprice`*o.`orderstock`+p.`prodeliveryfee`, "
+													+ "	u.`userName`, "
+													+ "	o.`orderRdate` "
+													+ "FROM `order` o "
+													+ "LEFT JOIN `product` p ON o.orderProNo=p.proNo "
+													+ "LEFT JOIN `user` u ON o.orderUid=u.UserId "
+													+ "LIMIT ?, 10 ";
+
+	// 유저 등급 변경
+	public static final String UPDATE_USER_GRADE = "UPDATE `User` SET `userGrade` = ? WHERE `userId` = ?";
+
 }
-*/

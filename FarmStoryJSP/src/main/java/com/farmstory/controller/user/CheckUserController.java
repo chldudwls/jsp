@@ -44,6 +44,8 @@ public class CheckUserController extends HttpServlet {
 			session.setAttribute("code", code);
 		}
 		
+		
+		
 		//JSON으로 만들어서 전송
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);

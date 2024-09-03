@@ -70,8 +70,12 @@ public enum ArticleService {
 		dao.updateArticle(dto);
 	}	
 	
-	public int deleteArticle(String no) {
-		return dao.deleteArticle(no);
+	public void updateArticleHit(String artNo) {
+		dao.updateArticleHit(artNo);
+	}	
+	
+	public void deleteArticle(String no) {
+		dao.deleteArticle(no);
 	}
 
 	public int selectCountTotal(String group, String cate) {
@@ -93,13 +97,13 @@ public enum ArticleService {
 		}
 		
 		return new PageGroupDto(pageGroupStart, pageGroupEnd);
-	}	
-	
-	/*
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
 	}
-	public void updateHitCount(String no) {
-		dao.updateHitCount(no);
-	}*/
+
+	public void UpdateComment(String artNo) {
+		dao.updateComment(artNo);
+	}
+
+	public void DowndateComment(String artNo) {
+		dao.DowndateComment(artNo);
+	}
 }

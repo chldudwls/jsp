@@ -15,6 +15,21 @@ public class UserDto {
 	private int UserPoint;
 	private String UserRegip;
 	private String UserRegdate;
+	
+	// 추가필드
+	private int UserCart;
+	private String UserRegday;
+	
+	public int getUserCart() {
+		return UserCart;
+	}
+	public void setUserCart(int userCart) {
+		UserCart = userCart;
+	}
+	public void setUserCart(String userCart) {
+		if(userCart != null) UserCart = Integer.parseInt(userCart);
+		else this.UserCart = 0;
+	}
 	public String getUserId() {
 		return UserId;
 	}
@@ -108,6 +123,11 @@ public class UserDto {
 	}
 	public void setUserRegdate(String userRegdate) {
 		UserRegdate = userRegdate;
+		UserRegday = userRegdate.substring(0, 10);
+	}
+
+	public String getUserRegday() {
+		return UserRegday;
 	}
 	@Override
 	public String toString() {
